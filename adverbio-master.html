@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AdverbioMaster</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<style>
+:root{--green:#58cc02;--green-dark:#46a302;--green-light:#d7ffb8;--blue:#1cb0f6;--blue-dark:#0a91d4;--red:#ff4b4b;--red-light:#ffdfe0;--yellow:#ffc800;--yellow-light:#fff3b0;--bg:#f7f7f7;--card:#fff;--text:#3c3c3c;--text-light:#777;--border:#e5e5e5;--shadow:0 4px 0 rgba(0,0,0,.12);--radius:16px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
+.screen{display:none;min-height:100vh;}
+.screen.active{display:flex;flex-direction:column;}
+.back-link{position:fixed;bottom:20px;right:20px;z-index:999;background:linear-gradient(135deg,#C8102E,#8B0000);color:#fff;padding:10px 18px;border-radius:30px;font-family:'Nunito',sans-serif;font-size:.85rem;font-weight:800;text-decoration:none;box-shadow:0 4px 15px rgba(200,16,46,.4);display:flex;align-items:center;gap:8px;transition:transform .2s;}
+.back-link:hover{transform:translateY(-2px);}
+#home{background:linear-gradient(160deg,#1a1a2e,#16213e 50%,#0f3460);align-items:center;justify-content:center;padding:40px 20px;text-align:center;}
+.home-owl{font-size:80px;animation:bounce 2s ease-in-out infinite;display:block;margin-bottom:10px;}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.home-title{font-family:'Fredoka One',sans-serif;font-size:3rem;color:#fff;letter-spacing:2px;margin-bottom:8px;text-shadow:0 4px 20px rgba(88,204,2,.5);}
+.home-subtitle{color:rgba(255,255,255,.7);font-size:1.1rem;margin-bottom:40px;}
+.units-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;max-width:900px;width:100%;}
+.unit-card{background:rgba(255,255,255,.07);border:2px solid rgba(255,255,255,.15);border-radius:20px;padding:28px 24px;cursor:pointer;transition:transform .2s,background .2s;text-align:left;position:relative;overflow:hidden;}
+.unit-card:hover{transform:translateY(-4px);background:rgba(255,255,255,.13);border-color:rgba(255,255,255,.35);}
+.unit-card::before{content:'';position:absolute;top:-30px;right:-30px;width:100px;height:100px;border-radius:50%;opacity:.15;}
+.unit-card.u1::before{background:var(--green)}.unit-card.u2::before{background:var(--blue)}.unit-card.u3::before{background:var(--purple,#ce82ff)}.unit-card.u4::before{background:var(--yellow)}.unit-card.u5::before{background:var(--red)}
+.unit-icon{font-size:2rem;margin-bottom:12px;}
+.unit-name{font-family:'Fredoka One',sans-serif;font-size:1.3rem;color:#fff;margin-bottom:6px;}
+.unit-desc{color:rgba(255,255,255,.6);font-size:.9rem;line-height:1.5;}
+.unit-badge{display:inline-block;margin-top:14px;padding:4px 14px;border-radius:20px;font-size:.78rem;font-weight:700;}
+.unit-card.u1 .unit-badge{background:var(--green);color:#fff}.unit-card.u2 .unit-badge{background:var(--blue);color:#fff}.unit-card.u3 .unit-badge{background:#ce82ff;color:#fff}.unit-card.u4 .unit-badge{background:var(--yellow);color:#3c3c3c}.unit-card.u5 .unit-badge{background:var(--red);color:#fff}
+#lesson{background:var(--bg);}
+.lesson-header{display:flex;align-items:center;gap:16px;padding:20px 24px;background:var(--card);border-bottom:2px solid var(--border);position:sticky;top:0;z-index:10;}
+.btn-back{background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--text-light);padding:6px;border-radius:8px;}
+.btn-back:hover{background:var(--border);}
+.progress-bar-wrap{flex:1;background:var(--border);border-radius:999px;height:14px;overflow:hidden;}
+.progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--blue));border-radius:999px;transition:width .5s cubic-bezier(.4,2,.6,1);}
+.xp-badge{background:var(--yellow);color:#3c3c3c;font-weight:800;font-size:.85rem;padding:6px 14px;border-radius:999px;white-space:nowrap;}
+.lesson-body{flex:1;display:flex;flex-direction:column;align-items:center;padding:32px 20px 120px;max-width:680px;margin:0 auto;width:100%;}
+.q-type-label{font-size:.8rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:10px;align-self:flex-start;}
+.q-title{font-family:'Fredoka One',sans-serif;font-size:1.6rem;color:var(--text);margin-bottom:28px;line-height:1.35;align-self:flex-start;cursor:pointer;border-radius:8px;padding:4px 8px;margin-left:-8px;transition:background .15s;}
+.q-title:hover{background:rgba(28,176,246,.08);}
+.q-title-hint{font-size:.72rem;color:var(--blue);font-weight:400;vertical-align:middle;font-family:'Nunito',sans-serif;}
+.q-trans{display:block;margin-bottom:16px;background:#eef6ff;border:1px solid #b3d4f5;border-radius:10px;padding:10px 14px;font-size:.9rem;color:#1a3a5c;font-weight:700;animation:fadeInT .2s ease;}
+@keyframes fadeInT{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+.def-card{background:linear-gradient(135deg,#1a1a2e,#0f3460);border-radius:20px;padding:30px;width:100%;margin-bottom:28px;position:relative;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.15);}
+.def-card::after{content:'📚';position:absolute;bottom:-10px;right:10px;font-size:5rem;opacity:.08;}
+.def-term{font-family:'Fredoka One',sans-serif;font-size:2rem;color:var(--yellow);margin-bottom:10px;}
+.def-text{color:rgba(255,255,255,.88);font-size:1.05rem;line-height:1.7;}
+.def-example{margin-top:16px;padding:12px 16px;background:rgba(255,255,255,.08);border-left:3px solid var(--green);border-radius:0 10px 10px 0;color:rgba(255,255,255,.75);font-style:italic;font-size:.95rem;}
+.def-tip{margin-top:16px;padding:12px 16px;background:rgba(255,200,0,.12);border-left:3px solid var(--yellow);border-radius:0 10px 10px 0;color:rgba(255,255,255,.85);font-size:.92rem;line-height:1.6;}
+.def-tip-label{font-size:.72rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--yellow);margin-bottom:5px;}
+.choices-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;width:100%;margin-bottom:24px;}
+.choice-btn{background:var(--card);border:2px solid var(--border);border-radius:var(--radius);padding:16px;font-family:'Nunito',sans-serif;font-size:1rem;font-weight:700;color:var(--text);cursor:pointer;text-align:left;transition:all .15s;box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:flex-start;gap:6px;}
+.choice-btn:hover:not(:disabled){border-color:var(--blue);background:#f0f9ff;transform:translateY(-2px);}
+.choice-btn.selected{border-color:var(--blue);background:#e8f5ff;}
+.choice-btn.correct{border-color:var(--green);background:var(--green-light);color:var(--green-dark);}
+.choice-btn.wrong{border-color:var(--red);background:var(--red-light);color:var(--red);}
+.choice-trans{font-size:.8rem;font-weight:800;color:#1a3a5c;background:#eef6ff;border:1px solid #b3d4f5;border-radius:6px;padding:4px 10px;display:none;width:100%;}
+.choice-trans.show{display:block;animation:fadeInT .2s ease;}
+.fill-wrap{width:100%;margin-bottom:24px;}
+.fill-sentence{font-size:1.25rem;font-weight:700;line-height:2.2;margin-bottom:16px;color:var(--text);}
+.fill-input{border:none;border-bottom:3px solid var(--blue);background:transparent;font-family:'Nunito',sans-serif;font-size:1.2rem;font-weight:700;color:var(--blue);width:160px;text-align:center;outline:none;padding:2px 8px;}
+.fill-input.correct{border-color:var(--green);color:var(--green-dark);}
+.fill-input.wrong{border-color:var(--red);color:var(--red);}
+.word-bank{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px;min-height:60px;padding:16px;background:var(--border);border-radius:var(--radius);width:100%;}
+.answer-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px;min-height:60px;padding:16px;background:var(--card);border:2px dashed var(--border);border-radius:var(--radius);width:100%;}
+.word-chip{background:var(--card);border:2px solid var(--border);border-radius:10px;padding:8px 16px;font-family:'Nunito',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;box-shadow:0 2px 0 rgba(0,0,0,.1);user-select:none;transition:transform .1s;position:relative;}
+.word-chip:hover{transform:scale(1.05);}
+.word-chip.used{opacity:.3;pointer-events:none;}
+.word-chip.placed{background:#e8f0ff;border-color:var(--blue);color:var(--blue-dark);}
+.word-trans-badge{position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:#1a1a2e;color:#a8d8ff;border-radius:8px;padding:4px 10px;font-size:.75rem;font-weight:800;white-space:nowrap;pointer-events:none;z-index:99;animation:fadeInT .2s ease;}
+.feedback-bar{position:fixed;bottom:0;left:0;right:0;padding:24px;display:flex;align-items:center;justify-content:space-between;gap:16px;transform:translateY(100%);transition:transform .3s cubic-bezier(.4,2,.6,1);z-index:20;}
+.feedback-bar.show{transform:translateY(0);}
+.feedback-bar.correct-fb{background:var(--green-light);border-top:4px solid var(--green);}
+.feedback-bar.wrong-fb{background:var(--red-light);border-top:4px solid var(--red);}
+.fb-icon{font-size:2rem;}.fb-content{flex:1;}
+.fb-title{font-family:'Fredoka One',sans-serif;font-size:1.3rem;margin-bottom:4px;}
+.fb-title.correct-fb{color:var(--green-dark)}.fb-title.wrong-fb{color:var(--red)}
+.fb-hint{font-size:.9rem;color:var(--text-light);}
+.btn-next{background:var(--green);color:#fff;border:none;border-radius:var(--radius);padding:14px 30px;font-family:'Nunito',sans-serif;font-size:1rem;font-weight:800;cursor:pointer;box-shadow:0 4px 0 var(--green-dark);white-space:nowrap;}
+.btn-next.wrong-next{background:var(--red);box-shadow:0 4px 0 #c83232;}
+.btn-check-wrap{position:fixed;bottom:0;left:0;right:0;padding:20px;background:linear-gradient(to top,var(--bg) 60%,transparent);}
+.btn-check{width:100%;max-width:680px;margin:0 auto;display:block;background:var(--green);color:#fff;border:none;border-radius:var(--radius);padding:18px;font-family:'Fredoka One',sans-serif;font-size:1.2rem;cursor:pointer;box-shadow:0 4px 0 var(--green-dark);letter-spacing:1px;transition:opacity .2s;}
+.btn-check:disabled{opacity:.35;cursor:not-allowed;}
+.tip-btn{align-self:flex-start;display:flex;align-items:center;gap:8px;background:none;border:2px solid var(--yellow);color:#b8860b;border-radius:999px;padding:7px 18px;font-family:'Nunito',sans-serif;font-size:.88rem;font-weight:800;cursor:pointer;margin-bottom:20px;transition:background .15s;}
+.tip-btn:hover{background:var(--yellow-light);}
+.tip-box{width:100%;background:var(--yellow-light);border:2px solid var(--yellow);border-radius:var(--radius);padding:16px 20px;margin-bottom:20px;display:none;}
+.tip-box.open{display:block;}
+.tip-box-label{font-size:.72rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#a07800;margin-bottom:6px;}
+.tip-box-text{font-size:.95rem;color:#5a4000;line-height:1.65;}
+.tip-box-text strong{color:#3a2800;}
+#results{background:linear-gradient(160deg,#1a1a2e,#0f3460);align-items:center;justify-content:center;padding:40px 20px;text-align:center;}
+.trophy{font-size:6rem;animation:pop .5s cubic-bezier(.4,2,.6,1);}
+@keyframes pop{0%{transform:scale(0)}100%{transform:scale(1)}}
+.results-title{font-family:'Fredoka One',sans-serif;font-size:2.5rem;color:var(--yellow);margin:16px 0 8px;}
+.results-subtitle{color:rgba(255,255,255,.7);margin-bottom:36px;font-size:1.1rem;}
+.stats-row{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:40px;}
+.stat-box{background:rgba(255,255,255,.07);border:2px solid rgba(255,255,255,.15);border-radius:16px;padding:20px 28px;min-width:120px;}
+.stat-num{font-family:'Fredoka One',sans-serif;font-size:2.2rem;}
+.stat-num.green{color:var(--green)}.stat-num.yellow{color:var(--yellow)}.stat-num.blue{color:var(--blue)}
+.stat-label{color:rgba(255,255,255,.6);font-size:.85rem;margin-top:4px;}
+.btn-home{background:var(--green);color:#fff;border:none;border-radius:var(--radius);padding:18px 50px;font-family:'Fredoka One',sans-serif;font-size:1.3rem;cursor:pointer;box-shadow:0 4px 0 var(--green-dark);}
+.hearts-display{display:flex;gap:4px;font-size:1.2rem;}
+@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+.shake{animation:shake .4s ease;}
+.choice-trans-box{display:none;margin-top:8px;margin-bottom:16px;border:1px solid #b3d4f5;border-radius:12px;padding:12px 16px;font-size:.9rem;line-height:1.6;animation:fadeInT .2s ease;}
+.trans-btn{display:inline-block;margin-top:4px;margin-bottom:12px;background:var(--blue);color:#fff;border:none;border-radius:20px;padding:6px 18px;font-size:.82rem;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;transition:background .15s;}
+.trans-btn:hover{background:var(--blue-dark);}
+.trans-btn-small{display:block;margin-top:6px;background:#eef6ff;color:#1a3a5c;border:1px solid #b3d4f5;border-radius:10px;padding:4px 12px;font-size:.75rem;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;transition:background .15s;width:fit-content;}
+.trans-btn-small:hover{background:#d0e8ff;}
+@media(max-width:480px){.choices-grid{grid-template-columns:1fr}.home-title{font-size:2rem}}
+</style>
+</head>
+<body>
+<a href="spanisch-adverbien.html" class="back-link">🇪🇸 Los Adverbios →</a>
+
+<div id="home" class="screen active">
+  <span class="home-owl">🦉</span>
+  <h1 class="home-title">AdverbioMaster</h1>
+  <p class="home-subtitle">Aprende los Adverbios · 11.º Curso · Elige una unidad!</p>
+  <div class="units-grid">
+    <div class="unit-card u1" onclick="startUnit(0)"><div class="unit-icon">📖</div><div class="unit-name">Qué es un adverbio?</div><div class="unit-desc">Definición, características y diferencia con el adjetivo.</div><span class="unit-badge">Unidad 1</span></div>
+    <div class="unit-card u2" onclick="startUnit(1)"><div class="unit-icon">🗺️</div><div class="unit-name">Adverbios de Lugar</div><div class="unit-desc">Aquí, allí, arriba, abajo, cerca, lejos, adentro...</div><span class="unit-badge">Unidad 2</span></div>
+    <div class="unit-card u3" onclick="startUnit(2)"><div class="unit-icon">⏰</div><div class="unit-name">Adverbios de Tiempo</div><div class="unit-desc">Hoy, ayer, mañana, siempre, nunca, ya, todavía...</div><span class="unit-badge">Unidad 3</span></div>
+    <div class="unit-card u4" onclick="startUnit(3)"><div class="unit-icon">💡</div><div class="unit-name">Adverbios de Modo</div><div class="unit-desc">Bien, mal, rápidamente, así, despacio, apenas...</div><span class="unit-badge">Unidad 4</span></div>
+    <div class="unit-card u5" onclick="startUnit(4)"><div class="unit-icon">🔗</div><div class="unit-name">Adverbios de Cantidad</div><div class="unit-desc">Muy, mucho, poco, bastante, demasiado, casi, nada...</div><span class="unit-badge">Unidad 5</span></div>
+  </div>
+</div>
+
+<div id="lesson" class="screen">
+  <div class="lesson-header">
+    <button class="btn-back" onclick="goHome()">✕</button>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressBar" style="width:0%"></div></div>
+    <div class="hearts-display" id="heartsDisplay">❤️❤️❤️</div>
+    <div class="xp-badge" id="xpBadge">⚡ 0 XP</div>
+  </div>
+  <div class="lesson-body" id="lessonBody"></div>
+  <div class="btn-check-wrap" id="checkWrap"><button class="btn-check" id="btnCheck" onclick="checkAnswer()" disabled>COMPROBAR RESPUESTA</button></div>
+  <div class="feedback-bar" id="feedbackBar">
+    <span class="fb-icon" id="fbIcon"></span>
+    <div class="fb-content"><div class="fb-title" id="fbTitle"></div><div class="fb-hint" id="fbHint"></div></div>
+    <button class="btn-next" id="btnNext" onclick="nextQuestion()">CONTINUAR</button>
+  </div>
+</div>
+
+<div id="results" class="screen">
+  <div class="trophy">🏆</div>
+  <div class="results-title">Lección completada!</div>
+  <div class="results-subtitle">Trabajo fantástico, sigue así!</div>
+  <div class="stats-row">
+    <div class="stat-box"><div class="stat-num green" id="statCorrect">0</div><div class="stat-label">Correctas ✓</div></div>
+    <div class="stat-box"><div class="stat-num yellow" id="statXP">0</div><div class="stat-label">XP ganados</div></div>
+    <div class="stat-box"><div class="stat-num blue" id="statAccuracy">0%</div><div class="stat-label">Precisión</div></div>
+  </div>
+  <button class="btn-home" onclick="goHome()">🏠 Volver al inicio</button>
+</div>
+
+<script>
+// ── WÖRTERBUCH ──
+var DICT = {
+  // ── FRAGEN ──
+  '¿Qué característica principal distingue al adverbio del adjetivo?': 'Was unterscheidet ein Adverb hauptsächlich vom Adjektiv?',
+  '¿Cuál es un adverbio en: «El concierto de ayer fue muy bueno»?': 'Welches Wort ist ein Adverb im Satz: «Das Konzert von gestern war sehr gut»?',
+  '¿Cuál afirmación sobre los adverbios es FALSA?': 'Welche Aussage über Adverbien ist FALSCH?',
+  'Ordena las palabras:': 'Bringe die Wörter in die richtige Reihenfolge:',
+  '¿A qué pregunta responden los adverbios de lugar?': 'Welche Frage beantworten Ortsadverbien?',
+  '¿Cuál es un adverbio de lugar?': 'Welches dieser Wörter ist ein Ortsadverb?',
+  '¿Qué adverbio completa: «Las llaves están _____ del cajón»?': 'Welches Adverb passt: «Die Schlüssel sind _____ der Schublade»?',
+  'Forma la oración:': 'Bilde den richtigen Satz:',
+  '¿Cuál NO es adverbio de tiempo?': 'Welches davon ist KEIN Zeitadverb?',
+  '¿Qué pregunta responden los adverbios de tiempo?': 'Welche Frage beantworten Zeitadverbien?',
+  '¿Qué adverbio completa: «_____ he terminado mis deberes»?': 'Welches Adverb passt: «_____ habe ich meine Hausaufgaben fertig»?',
+  '¿Cómo se forman muchos adverbios de modo?': 'Wie werden viele Modaladverbien gebildet?',
+  '¿Cuál es el adverbio correcto de «tranquilo»?': 'Welches ist das korrekte Adverb von «tranquilo»?',
+  '¿Qué adverbio completa: «El profesor explicó el tema _____»?': 'Welches Adverb passt: «Der Lehrer erklärte das Thema _____»?',
+  '¿A qué pregunta responden los adverbios de cantidad?': 'Welche Frage beantworten Mengenadverbien?',
+  '¿Cuál es un adverbio de cantidad?': 'Welches ist ein Mengenadverb?',
+  '¿Qué adverbio completa: «La película es _____ aburrida»?': 'Welches Adverb passt: «Der Film ist _____ langweilig»?',
+  // ── ANTWORTEN MC ──
+  'El adverbio es siempre negativo': 'Das Adverb ist immer negativ',
+  'El adverbio es invariable (no cambia de género ni número)': 'Das Adverb ist unveränderlich (kein Genus, kein Numerus)',
+  'El adverbio solo modifica sustantivos': 'Das Adverb modifiziert nur Substantive',
+  'El adverbio siempre va al final de la oración': 'Das Adverb steht immer am Satzende',
+  'concierto': 'Konzert',
+  'bueno': 'gut',
+  'ayer': 'gestern',
+  'fue': 'war',
+  'Pueden modificar verbos': 'Sie können Verben modifizieren',
+  'Concuerdan en género con el sustantivo': 'Sie stimmen im Genus mit dem Substantiv überein',
+  'Son palabras invariables': 'Sie sind unveränderliche Wörter',
+  'Pueden expresar cantidad': 'Sie können Menge/Grad ausdrücken',
+  'Añadiendo -ción al verbo': '-ción an das Verb anhängen',
+  'Añadiendo -mente al adjetivo femenino': '-mente an die feminine Adjektivform anhängen',
+  'Añadiendo -ísimo al sustantivo': '-ísimo an das Substantiv anhängen',
+  'Con el prefijo des-': 'Mit dem Präfix des-',
+  'tranquilmente': 'ruhig / gelassen',
+  'tranquilísimo': 'sehr ruhig (Superlativ)',
+  'tranquilación': '(kein echtes Wort)',
+  'tranquiloso': '(kein echtes Wort)',
+  'mañana': 'morgen',
+  'pronto': 'bald',
+  'lejos': 'weit / fern',
+  'arriba': 'oben',
+  'lentamente': 'langsam',
+  'demasiado': 'zu viel / zu sehr',
+  'bien': 'gut',
+  'dentro': 'drinnen / innen',
+  'nunca': 'nie',
+  'allá': 'dort(hin)',
+  'después': 'danach',
+  'Allí': 'Dort',
+  'Así': 'So / auf diese Weise',
+  'Ya': 'Schon / bereits',
+  'Muy': 'Sehr',
+  'aquí': 'hier',
+  'bastante': 'ziemlich / genug',
+  'fácilmente': 'leicht / einfach',
+  'claramente': 'klar / deutlich',
+  'mucho': 'viel / sehr',
+  'allí': 'dort',
+  'cerca': 'nah / in der Nähe',
+  'nunca': 'nie',
+  'aquí': 'hier',
+  // ── SORTIERWÖRTER ──
+  'corre': 'läuft / rennt',
+  'Él': 'Er',
+  'rápidamente': 'schnell',
+  'muy': 'sehr',
+  'en': 'in',
+  'vivo': 'wohne',
+  'Yo': 'Ich',
+  'colegio': 'Schule',
+  'del': 'von dem / vom',
+  'todavía': 'noch / immer noch',
+  'no': 'nicht',
+  'Ella': 'Sie',
+  'llegado': 'angekommen',
+  'ha': 'hat',
+  'trabaja': 'arbeitet',
+  'constantemente': 'ständig / konstant',
+  'esforzada': 'fleißig / engagiert',
+  'y': 'und',
+  'tan': 'so (sehr)',
+  'habló': 'sprach / redete',
+  'que': 'dass / als',
+  'rápido': 'schnell',
+  'nadie': 'niemand',
+  'entendió': 'verstand'
+};
+
+function getTranslation(text) {
+  var t = text.replace(/<[^>]*>/g,'').trim();
+  if (DICT[t]) return DICT[t];
+  for (var k in DICT) {
+    if (t.toLowerCase() === k.toLowerCase()) return DICT[k];
+  }
+  return null;
+}
+
+// ── UNITS DATA ──
+var UNITS = [
+  {questions:[
+    {type:'definition',term:'Adverbio',definition:'El adverbio es una palabra invariable que modifica a un verbo, a un adjetivo o a otro adverbio.',example:'Ella canta <strong>bien</strong>. — bien modifica al verbo cantar.',qType:'Nueva Definición',tipDE:'🇩🇪 Das Adverb ist unveränderlich. bien = gut | muy = sehr | aquí = hier.'},
+    {type:'mc',question:'¿Qué característica principal distingue al adverbio del adjetivo?',choices:['El adverbio es siempre negativo','El adverbio es invariable (no cambia de género ni número)','El adverbio solo modifica sustantivos','El adverbio siempre va al final de la oración'],correct:1,hint:'Los adjetivos concuerdan en género; los adverbios no cambian.',tipDE:'🇩🇪 Adjektiv = veränderlich (bueno/buena), Adverb = unveränderlich (bien bleibt bien).'},
+    {type:'mc',question:'¿Cuál es un adverbio en: «El concierto de ayer fue muy bueno»?',choices:['concierto','bueno','ayer','fue'],correct:2,hint:'«Ayer» indica tiempo.',tipDE:'🇩🇪 ayer = gestern | hoy = heute | mañana = morgen.'},
+    {type:'fill',before:'Un adverbio puede modificar a un verbo, adjetivo o a otro ',blank:'adverbio',after:'.',hint:'Ej: «muy rápidamente» — muy modifica a rápidamente.',tipDE:'🇩🇪 muy rápidamente = sehr schnell.'},
+    {type:'mc',question:'¿Cuál afirmación sobre los adverbios es FALSA?',choices:['Pueden modificar verbos','Concuerdan en género con el sustantivo','Son palabras invariables','Pueden expresar cantidad'],correct:1,hint:'Los adverbios son invariables.',tipDE:'🇩🇪 rápido (veränderlich) vs. rápidamente (unveränderlich).'},
+    {type:'sort',question:'Ordena las palabras:',words:['corre','Él','rápidamente','muy'],answer:['Él','corre','muy','rápidamente'],hint:'«Muy» modifica a «rápidamente».',tipDE:'🇩🇪 Él corre muy rápidamente = Er läuft sehr schnell.'}
+  ]},
+  {questions:[
+    {type:'definition',term:'Adverbio de Lugar',definition:'Los adverbios de lugar indican dónde se realiza la acción. Responden a: ¿Dónde?',example:'«El libro está <strong>aquí</strong>.» | «Voy <strong>allá</strong>.»',qType:'Nueva Definición',tipDE:'🇩🇪 aquí = hier | allí = dort | arriba = oben | abajo = unten | cerca = nah | lejos = weit.'},
+    {type:'mc',question:'¿A qué pregunta responden los adverbios de lugar?',choices:['¿Cuándo?','¿Cómo?','¿Dónde?','¿Por qué?'],correct:2,hint:'Lugar = espacio → ¿Dónde?',tipDE:'🇩🇪 ¿Dónde? = Wo?'},
+    {type:'mc',question:'¿Cuál es un adverbio de lugar?',choices:['ayer','lentamente','arriba','demasiado'],correct:2,hint:'«Arriba» indica posición espacial.',tipDE:'🇩🇪 arriba = oben | abajo = unten | delante = vorne | detrás = hinten.'},
+    {type:'fill',before:'El contrario de «aquí» es ',blank:'allí',after:'.',hint:'aquí = cerca del hablante | allí = lejos.',tipDE:'🇩🇪 allí (dort) vs. allá (dorthin).'},
+    {type:'mc',question:'¿Qué adverbio completa: «Las llaves están _____ del cajón»?',choices:['pronto','bien','dentro','nunca'],correct:2,hint:'«Dentro» indica posición interior.',tipDE:'🇩🇪 dentro = drinnen | fuera = draußen.'},
+    {type:'sort',question:'Forma la oración:',words:['en','vivo','Yo','cerca','colegio','del'],answer:['Yo','vivo','cerca','del','colegio','en'],hint:'«Cerca» es el adverbio de lugar.',tipDE:'🇩🇪 Ich wohne nah an der Schule.'}
+  ]},
+  {questions:[
+    {type:'definition',term:'Adverbio de Tiempo',definition:'Los adverbios de tiempo sitúan la acción en el tiempo. Responden a ¿Cuándo?',example:'«<strong>Hoy</strong> tenemos examen.» | «Ella <strong>siempre</strong> llega tarde.»',qType:'Nueva Definición',tipDE:'🇩🇪 hoy=heute | ayer=gestern | mañana=morgen | siempre=immer | nunca=nie | ya=schon | todavía=noch.'},
+    {type:'mc',question:'¿Cuál NO es adverbio de tiempo?',choices:['ayer','mañana','pronto','lejos'],correct:3,hint:'«Lejos» indica lugar.',tipDE:'🇩🇪 lejos = weit/fern (Ort), pronto = bald (Zeit).'},
+    {type:'mc',question:'¿Qué pregunta responden los adverbios de tiempo?',choices:['¿Dónde ocurrió?','¿Cuándo ocurrió?','¿Cómo ocurrió?','¿Cuánto costó?'],correct:1,hint:'Tiempo → ¿Cuándo?',tipDE:'🇩🇪 ¿Cuándo? = Wann?'},
+    {type:'fill',before:'El contrario de «siempre» es ',blank:'nunca',after:'.',hint:'siempre=100%, nunca=0%.',tipDE:'🇩🇪 siempre = immer | nunca = nie.'},
+    {type:'mc',question:'¿Qué adverbio completa: «_____ he terminado mis deberes»?',choices:['Allí','Así','Ya','Muy'],correct:2,hint:'«Ya» = acción concluida.',tipDE:'🇩🇪 ya = schon/bereits.'},
+    {type:'sort',question:'Ordena las palabras:',words:['todavía','no','Ella','llegado','ha'],answer:['Ella','todavía','no','ha','llegado'],hint:'«Todavía no» = acción no ocurrida.',tipDE:'🇩🇪 todavía no = noch nicht.'}
+  ]},
+  {questions:[
+    {type:'definition',term:'Adverbio de Modo',definition:'Los adverbios de modo expresan la manera en que se realiza una acción. Responden a ¿Cómo? Muchos se forman con -mente.',example:'«Habla <strong>claramente</strong>.» | «Lo hizo <strong>bien</strong>.»',qType:'Nueva Definición',tipDE:'🇩🇪 claramente=klar | rápidamente=schnell | lentamente=langsam. Frage: Wie?'},
+    {type:'mc',question:'¿Cómo se forman muchos adverbios de modo?',choices:['Añadiendo -ción al verbo','Añadiendo -mente al adjetivo femenino','Añadiendo -ísimo al sustantivo','Con el prefijo des-'],correct:1,hint:'rápida → rápidamente.',tipDE:'🇩🇪 Adjektiv (fem.) + -mente = Adverb.'},
+    {type:'mc',question:'¿Cuál es el adverbio correcto de «tranquilo»?',choices:['tranquilmente','tranquilísimo','tranquilación','tranquiloso'],correct:0,hint:'tranquilo → tranquila → tranquilamente.',tipDE:'🇩🇪 tranquilamente = ruhig/gelassen.'},
+    {type:'fill',before:'El adverbio del adjetivo «rápido» es ',blank:'rápidamente',after:'.',hint:'rápido → rápida → rápidamente.',tipDE:'🇩🇪 clara y rápidamente (nicht: claramente y rápidamente).'},
+    {type:'mc',question:'¿Qué adverbio completa: «El profesor explicó el tema _____»?',choices:['ayer','allí','claramente','mucho'],correct:2,hint:'«Claramente» = ¿Cómo?',tipDE:'🇩🇪 explicó claramente = erklärte klar.'},
+    {type:'sort',question:'Forma la oración:',words:['trabaja','constantemente','Ella','esforzada','y'],answer:['Ella','trabaja','esforzada','y','constantemente'],hint:'Dos adverbios de modo.',tipDE:'🇩🇪 Ella trabaja esforzada y constantemente.'}
+  ]},
+  {questions:[
+    {type:'definition',term:'Adverbio de Cantidad',definition:'Los adverbios de cantidad expresan el grado o intensidad. Responden a ¿Cuánto?',example:'«Estudia <strong>mucho</strong>.» | «Es <strong>muy</strong> inteligente.»',qType:'Nueva Definición',tipDE:'🇩🇪 muy=sehr | mucho=viel | poco=wenig | bastante=ziemlich | demasiado=zu viel | casi=fast.'},
+    {type:'mc',question:'¿A qué pregunta responden los adverbios de cantidad?',choices:['¿Dónde?','¿Cuándo?','¿Cómo?','¿Cuánto?'],correct:3,hint:'Cantidad = grado → ¿Cuánto?',tipDE:'🇩🇪 muy (sehr) vor Adjektiv, mucho (viel) vor Verb.'},
+    {type:'mc',question:'¿Cuál es un adverbio de cantidad?',choices:['aquí','nunca','bastante','fácilmente'],correct:2,hint:'«Bastante» indica grado.',tipDE:'🇩🇪 poco → bastante → mucho → demasiado.'},
+    {type:'fill',before:'Lo contrario de «mucho» es ',blank:'poco',after:'.',hint:'Grados opuestos.',tipDE:'🇩🇪 mucho = viel | poco = wenig.'},
+    {type:'mc',question:'¿Qué adverbio completa: «La película es _____ aburrida»?',choices:['allá','después','demasiado','nunca'],correct:2,hint:'«Demasiado» = exceso.',tipDE:'🇩🇪 demasiado = zu viel/zu sehr.'},
+    {type:'sort',question:'Ordena las palabras:',words:['tan','habló','que','rápido','nadie','entendió'],answer:['habló','tan','rápido','que','nadie','entendió'],hint:'«Tan» intensifica «rápido».',tipDE:'🇩🇪 tan...que... = so...dass...'}
+  ]}
+];
+
+// ── STATE ──
+var currentUnit=0,questions=[],qIndex=0,xp=0,hearts=3,correct=0,answered=false,userAnswer=null,placedWords=[];
+
+function show(id){document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});document.getElementById(id).classList.add('active');}
+function goHome(){hideFeedback();show('home');}
+function startUnit(idx){currentUnit=idx;questions=shuffle(UNITS[idx].questions.slice());qIndex=0;xp=0;hearts=3;correct=0;answered=false;show('lesson');renderQuestion();}
+function shuffle(arr){for(var i=arr.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=arr[i];arr[i]=arr[j];arr[j]=t;}return arr;}
+
+// ── RENDER ──
+function renderQuestion(){
+  var q=questions[qIndex];
+  var body=document.getElementById('lessonBody');
+  answered=false;userAnswer=null;placedWords=[];
+  document.getElementById('progressBar').style.width=(qIndex/questions.length*100)+'%';
+  document.getElementById('xpBadge').textContent='⚡ '+xp+' XP';
+  document.getElementById('heartsDisplay').textContent='❤️'.repeat(hearts)+'🖤'.repeat(3-hearts);
+  hideFeedback();
+  document.getElementById('btnCheck').disabled=true;
+  document.getElementById('btnCheck').style.display='block';
+  document.getElementById('checkWrap').style.display='block';
+
+  var html='';
+  var tip=q.tipDE?('<button class="tip-btn" onclick="toggleTip(this)">🇩🇪 Tipp auf Deutsch anzeigen</button><div class="tip-box"><div class="tip-box-label">🇩🇪 Tipp auf Deutsch</div><div class="tip-box-text">'+q.tipDE+'</div></div>'):'';
+
+  if(q.type==='definition'){
+    var dt=q.tipDE?('<div class="def-tip"><div class="def-tip-label">🇩🇪 Tipp auf Deutsch</div>'+q.tipDE+'</div>'):'';
+    html='<div class="q-type-label">📖 '+q.qType+'</div>'
+        +'<h2 class="q-title">Aprende esta definición:</h2>'
+        +'<div class="def-card">'
+        +'<div class="def-term">'+q.term+'</div>'
+        +'<div class="def-text">'+q.definition+'</div>'
+        +'<div class="def-example">'+q.example+'</div>'
+        +dt+'</div>';
+    document.getElementById('btnCheck').disabled=false;
+    document.getElementById('btnCheck').textContent='CONTINUAR →';
+    answered=true;
+  } else if(q.type==='mc'){
+    var choices='';
+    for(var i=0;i<q.choices.length;i++){
+      choices+='<button class="choice-btn" id="choice'+i+'" onclick="handleChoice('+i+')">'
+               +'<span class="choice-text">'+q.choices[i]+'</span>'
+               +'</button>';
+    }
+    html='<div class="q-type-label">🎯 Opción Múltiple</div>'
+        +'<h2 class="q-title" id="qtitle">'+q.question.replace(/\n/g,'<br>')+'</h2>'
+        +'<button class="trans-btn" onclick="translateQBtn(this)">🇩🇪 Übersetzen</button>'
+        +'<div class="q-trans-box" style="display:none;margin-bottom:14px;background:#eef6ff;border:1px solid #b3d4f5;border-radius:10px;padding:10px 14px;font-size:.9rem;color:#1a3a5c;font-weight:700;"></div>'
+        +'<div class="choices-grid" id="choicesGrid">'+choices+'</div>'
+        +'<button class="trans-btn" id="transBtnChoice" onclick="translateSelectedChoice(this)">🇩🇪 Antwort übersetzen</button>'
+        +'<div class="choice-trans-box" id="choiceTransBox"></div>'
+        +tip;
+  } else if(q.type==='fill'){
+    html='<div class="q-type-label">✍️ Completar</div>'
+        +'<h2 class="q-title">Rellena el hueco:</h2>'
+        +'<div class="fill-wrap">'
+        +'<div class="fill-sentence">'+q.before+'<span style="color:var(--blue);font-weight:900">___</span>'+q.after+'</div>'
+        +'<div class="fill-sentence">'+q.before+'<input class="fill-input" id="fillInput" type="text" autocomplete="off" oninput="fillChanged()" placeholder="..."/>'+q.after+'</div>'
+        +'</div>'+tip;
+  } else if(q.type==='sort'){
+    var ws=shuffle(q.words.slice());
+    var chips='';
+    for(var wi=0;wi<ws.length;wi++){
+      chips+='<button class="word-chip" id="wc'+wi+'" ondblclick="translateWord(this,\''+ws[wi]+'\')" onclick="addWord(\''+ws[wi]+'\',this)">'+ws[wi]+'</button>';
+    }
+    html='<div class="q-type-label">🔀 Ordenar Palabras</div>'
+        +'<h2 class="q-title">'+q.question+'</h2>'
+        +'<div class="answer-row" id="answerRow"></div>'
+        +'<div class="word-bank" id="wordBank">'+chips+'</div>'
+        +'<div style="font-size:.75rem;color:var(--text-light);margin-bottom:12px">💡 Doppelklick = Übersetzung</div>'
+        +tip;
+  }
+  body.innerHTML=html;
+  if(q.type==='fill'){
+    document.getElementById('fillInput').addEventListener('keydown',function(e){if(e.key==='Enter')checkAnswer();});
+  }
+}
+
+// ── TRANSLATION ──
+function translateQBtn(btn) {
+  var box = btn.nextElementSibling;
+  if (box.style.display !== 'none') {
+    box.style.display = 'none';
+    btn.textContent = '🇩🇪 Übersetzen';
+    return;
+  }
+  var titleEl = document.getElementById('qtitle');
+  var text = titleEl ? titleEl.innerText.trim() : '';
+  var tr = getTranslation(text);
+  box.textContent = tr ? ('🇩🇪 ' + tr) : '🇩🇪 Keine Übersetzung verfügbar';
+  box.style.display = 'block';
+  btn.textContent = '🇩🇪 Ausblenden';
+  if (tr) setTimeout(function(){ box.style.display='none'; btn.textContent='🇩🇪 Übersetzen'; }, 4000);
+}
+
+function translateSelectedChoice(btn) {
+  var box = document.getElementById('choiceTransBox');
+  if (box.style.display === 'block') {
+    box.style.display = 'none';
+    btn.textContent = '🇩🇪 Antwort übersetzen';
+    return;
+  }
+  if (userAnswer === null) {
+    box.textContent = '⚠️ Bitte zuerst eine Antwort auswählen.';
+    box.style.background = '#fff3b0';
+    box.style.borderColor = '#ffc800';
+    box.style.color = '#5a4000';
+    box.style.display = 'block';
+    return;
+  }
+  var text = questions[qIndex].choices[userAnswer];
+  var tr = getTranslation(text);
+  box.innerHTML = '<span style="color:#777;font-size:.8rem">Gewählte Antwort:</span><br>'
+    + '<strong style="color:#1a3a5c">' + text + '</strong><br>'
+    + '<span style="font-size:1rem">🇩🇪 ' + (tr || 'Keine Übersetzung verfügbar') + '</span>';
+  box.style.background = '#eef6ff';
+  box.style.borderColor = '#b3d4f5';
+  box.style.color = '#1a3a5c';
+  box.style.display = 'block';
+  btn.textContent = '🇩🇪 Ausblenden';
+  if (tr) setTimeout(function(){ box.style.display='none'; btn.textContent='🇩🇪 Antwort übersetzen'; }, 4000);
+}
+
+function translateChoiceBtn(btn) {
+  var box = btn.nextElementSibling;
+  if (box.classList.contains('show')) { box.classList.remove('show'); box.textContent=''; return; }
+  document.querySelectorAll('.choice-trans').forEach(function(el){ el.classList.remove('show'); el.textContent=''; });
+  var choiceEl = btn.previousElementSibling;
+  var text = choiceEl ? choiceEl.innerText.trim() : '';
+  var tr = getTranslation(text);
+  box.textContent = tr ? ('🇩🇪 ' + tr) : '🇩🇪 Keine Übersetzung';
+  box.classList.add('show');
+}
+
+function handleChoice(i){
+  if(answered)return;
+  userAnswer=i;
+  var btns=document.querySelectorAll('.choice-btn');
+  for(var j=0;j<btns.length;j++) btns[j].classList.toggle('selected',j===i);
+  document.getElementById('btnCheck').disabled=false;
+}
+
+function translateWord(btn,word){
+  var existing=btn.querySelector('.word-trans-badge');
+  if(existing){existing.remove();return;}
+  var tr=getTranslation(word);
+  if(!tr)return;
+  var badge=document.createElement('span');
+  badge.className='word-trans-badge';
+  badge.textContent='🇩🇪 '+tr;
+  btn.appendChild(badge);
+  setTimeout(function(){if(badge.parentNode)badge.remove();},3500);
+}
+
+function toggleTip(btn){
+  var box=btn.nextElementSibling;
+  var open=box.classList.toggle('open');
+  btn.textContent=open?'🇩🇪 Tipp ausblenden ▲':'🇩🇪 Tipp auf Deutsch anzeigen ▼';
+}
+
+// ── INPUT ──
+function fillChanged(){document.getElementById('btnCheck').disabled=document.getElementById('fillInput').value.trim().length===0;}
+function addWord(word,btn){
+  if(btn.classList.contains('used'))return;
+  btn.classList.add('used');
+  placedWords.push({word:word,btn:btn});
+  var ar=document.getElementById('answerRow');
+  var chip=document.createElement('button');
+  chip.className='word-chip placed';
+  chip.textContent=word;
+  chip.onclick=(function(c,b){return function(){c.remove();b.classList.remove('used');placedWords=placedWords.filter(function(p){return p.btn!==b;});document.getElementById('btnCheck').disabled=placedWords.length===0;};})(chip,btn);
+  ar.appendChild(chip);
+  document.getElementById('btnCheck').disabled=false;
+}
+
+// ── CHECK ──
+function checkAnswer(){
+  var q=questions[qIndex];
+  if(q.type==='definition'){nextQuestion();return;}
+  if(answered){nextQuestion();return;}
+  answered=true;
+  var ok=false;
+  if(q.type==='mc'){
+    ok=userAnswer===q.correct;
+    var btns=document.querySelectorAll('.choice-btn');
+    for(var j=0;j<btns.length;j++){
+      btns[j].disabled=true;
+      if(j===q.correct)btns[j].classList.add('correct');
+      else if(j===userAnswer&&!ok)btns[j].classList.add('wrong');
+    }
+  } else if(q.type==='fill'){
+    var inp=document.getElementById('fillInput');
+    var val=inp.value.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+    var exp=q.blank.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+    ok=val===exp;
+    inp.disabled=true;
+    inp.classList.add(ok?'correct':'wrong');
+    if(!ok)inp.value=q.blank;
+  } else if(q.type==='sort'){
+    var got=placedWords.map(function(p){return p.word;}).join(' ');
+    ok=got===q.answer.join(' ');
+    document.querySelectorAll('#answerRow .word-chip').forEach(function(c){
+      c.style.borderColor=ok?'var(--green)':'var(--red)';
+      c.style.background=ok?'var(--green-light)':'var(--red-light)';
+    });
+  }
+  if(ok){xp+=10;correct++;showFeedback(true,q.hint||'');}
+  else{hearts=Math.max(0,hearts-1);showFeedback(false,q.hint||'');document.getElementById('heartsDisplay').classList.add('shake');setTimeout(function(){document.getElementById('heartsDisplay').classList.remove('shake');},400);}
+  document.getElementById('xpBadge').textContent='⚡ '+xp+' XP';
+  document.getElementById('heartsDisplay').textContent='❤️'.repeat(hearts)+'🖤'.repeat(3-hearts);
+  document.getElementById('btnCheck').style.display='none';
+}
+
+function showFeedback(ok,hint){
+  var bar=document.getElementById('feedbackBar');
+  document.getElementById('fbIcon').textContent=ok?'🎉':'💔';
+  document.getElementById('fbTitle').textContent=ok?'¡Muy bien!':'¡Casi lo tienes!';
+  document.getElementById('fbTitle').className='fb-title '+(ok?'correct-fb':'wrong-fb');
+  document.getElementById('fbHint').textContent=hint?'💡 '+hint:'';
+  document.getElementById('btnNext').className='btn-next'+(ok?'':' wrong-next');
+  bar.className='feedback-bar show '+(ok?'correct-fb':'wrong-fb');
+}
+function hideFeedback(){document.getElementById('feedbackBar').className='feedback-bar';}
+function nextQuestion(){qIndex++;if(qIndex>=questions.length||hearts===0)showResults();else renderQuestion();}
+function showResults(){
+  var acc=questions.length>0?Math.round(correct/questions.length*100):0;
+  document.getElementById('statCorrect').textContent=correct;
+  document.getElementById('statXP').textContent=xp;
+  document.getElementById('statAccuracy').textContent=acc+'%';
+  show('results');
+}
+</script>
+
+</body>
+</html>

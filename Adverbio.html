@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Los Adverbios — Spanisch 11. Klasse</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;600&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--esp:#C8102E;--gold:#F5A623;--cream:#FDF6EC;--dark:#0A0706;--green:#16A34A;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:var(--dark);color:var(--cream);min-height:100vh;}
+a{color:inherit;text-decoration:none;}
+
+/* HEADER */
+header{background:linear-gradient(135deg,#C8102E,#8B0000);padding:18px 40px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 4px 30px rgba(0,0,0,.5);border-bottom:6px solid #7a0000;}
+.header-left{display:flex;align-items:center;gap:14px;}
+header h1{font-family:‘Playfair Display’,serif;font-size:1.4rem;color:#fff;}
+header p{font-size:.78rem;color:rgba(255,255,255,.75);}
+.badge{background:var(–gold);color:var(–dark);padding:6px 16px;border-radius:30px;font-size:.8rem;font-weight:600;font-family:monospace;}
+
+/* LAYOUT */
+.main{display:flex;min-height:calc(100vh - 88px);}
+
+/* SIDEBAR */
+.sidebar{width:220px;background:#070504;padding:30px 0;position:sticky;top:88px;height:calc(100vh - 88px);overflow-y:auto;flex-shrink:0;border-right:1px solid rgba(255,255,255,.07);}
+.sidebar-title{font-family:monospace;font-size:.7rem;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:2px;padding:0 20px 16px;}
+.nav-item{display:flex;align-items:center;gap:10px;padding:12px 20px;cursor:pointer;border-left:3px solid transparent;font-size:.86rem;color:rgba(255,255,255,.5);transition:all .2s;}
+.nav-item:hover{background:rgba(255,255,255,.04);color:rgba(255,255,255,.8);}
+.nav-item.active{border-left-color:var(–gold);background:rgba(245,166,35,.08);color:var(–gold);font-weight:600;}
+.nav-item.done{color:var(–green);}
+.nav-item.done .nav-num{background:var(–green)!important;color:#fff!important;}
+.nav-item.active .nav-num{background:var(–gold)!important;color:var(–dark)!important;}
+.nav-num{width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:.68rem;flex-shrink:0;}
+.sidebar-link{display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;background:linear-gradient(135deg,rgba(88,204,2,.12),rgba(28,176,246,.08));border:1px solid rgba(88,204,2,.25);color:#58cc02;font-size:.84rem;font-weight:700;transition:all .2s;margin:16px 12px 0;}
+.sidebar-link:hover{background:linear-gradient(135deg,rgba(88,204,2,.22),rgba(28,176,246,.15));}
+
+/* CONTENT */
+.content{flex:1;padding:48px 72px;}
+.slide{display:none;animation:fadeUp .5s ease forwards;}
+.slide.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+.slide-label{font-family:monospace;font-size:.72rem;color:var(–gold);text-transform:uppercase;letter-spacing:3px;margin-bottom:12px;}
+.slide-title{font-family:‘Playfair Display’,serif;font-size:2.4rem;line-height:1.15;color:#fff;margin-bottom:8px;}
+.slide-sub{font-size:1rem;color:rgba(255,255,255,.5);margin-bottom:36px;font-weight:300;}
+
+/* CARDS */
+.card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:26px 30px;margin-bottom:18px;}
+.card:hover{border-color:rgba(245,166,35,.3);}
+.card h3{font-family:‘Playfair Display’,serif;font-size:1.15rem;color:var(–gold);margin-bottom:10px;}
+.card p{color:rgba(255,255,255,.75);line-height:1.75;font-size:.93rem;}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+.tag{background:rgba(245,166,35,.12);color:var(–gold);padding:5px 13px;border-radius:20px;font-size:.83rem;font-family:monospace;}
+
+.example-box{background:linear-gradient(135deg,rgba(37,99,235,.15),rgba(37,99,235,.05));border:1px solid rgba(37,99,235,.3);border-radius:12px;padding:18px 22px;margin:12px 0;font-size:.92rem;line-height:1.9;}
+.es{color:#93C5FD;font-family:monospace;font-size:.87rem;}
+.hl{color:var(–gold);font-weight:700;}
+.de{color:rgba(255,255,255,.45);font-size:.82rem;font-style:italic;}
+.rule-box{background:linear-gradient(135deg,rgba(200,16,46,.12),rgba(200,16,46,.04));border-left:4px solid var(–esp);border-radius:0 12px 12px 0;padding:16px 22px;margin:14px 0;color:rgba(255,255,255,.82);line-height:1.7;font-size:.91rem;}
+.rule-box strong{color:var(–gold);}
+
+/* TABLE */
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:.88rem;}
+th{background:rgba(200,16,46,.3);color:#fff;padding:14px 22px;text-align:left;font-family:monospace;font-size:.72rem;text-transform:uppercase;}
+td{padding:14px 22px;border-bottom:1px solid rgba(255,255,255,.06);color:rgba(255,255,255,.8);}
+.tag-esp{color:#60A5FA;font-family:monospace;font-size:.85rem;}
+.tag-de{color:rgba(255,255,255,.4);font-size:.82rem;font-style:italic;}
+.arr{color:rgba(255,255,255,.25);}
+
+/* GRID */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px;}
+.cat-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:22px;transition:all .25s;}
+.cat-card:hover{transform:translateY(-3px);border-color:rgba(245,166,35,.4);}
+.cat-icon{font-size:1.8rem;margin-bottom:8px;}
+.cat-title{font-family:‘Playfair Display’,serif;font-size:1rem;color:var(–gold);margin-bottom:4px;}
+.cat-sub{font-size:.78rem;color:rgba(255,255,255,.4);margin-bottom:8px;font-style:italic;}
+.cat-words{font-family:monospace;font-size:.78rem;color:rgba(255,255,255,.55);line-height:1.9;}
+
+/* VOCAB BLOCK */
+.vocab-block{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;overflow:hidden;margin-bottom:20px;}
+.vocab-head{background:rgba(200,16,46,.25);padding:14px 22px;font-family:monospace;font-size:.72rem;text-transform:uppercase;letter-spacing:1.5px;color:#fff;}
+.vocab-grid{display:grid;grid-template-columns:repeat(4,1fr);}
+.vocab-cell{display:flex;flex-direction:column;gap:4px;padding:20px 28px;border-bottom:1px solid rgba(255,255,255,.04);border-right:1px solid rgba(255,255,255,.04);}
+.vocab-es{color:#60A5FA;font-family:monospace;font-size:1.05rem;font-weight:700;}
+.vocab-de{color:rgba(255,255,255,.45);font-style:italic;font-size:.82rem;}
+
+/* SCENE */
+.scene{position:relative;overflow:hidden;border-radius:18px;margin:26px 0 32px;border:1px solid rgba(255,255,255,.08);height:170px;cursor:pointer;}
+.scene-tag{position:absolute;top:10px;left:14px;font-family:monospace;font-size:.62rem;color:rgba(255,255,255,.22);letter-spacing:1.5px;text-transform:uppercase;z-index:5;}
+.scene-btn{position:absolute;top:8px;right:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:3px 11px;font-size:.65rem;font-family:monospace;color:rgba(255,255,255,.35);cursor:pointer;z-index:20;}
+.scene-btn:hover{background:rgba(245,166,35,.12);color:var(–gold);}
+.adverb-pop{position:absolute;top:50%;left:50%;transform:translate(-50%,-60%) scale(0);font-family:‘Playfair Display’,serif;font-size:2.6rem;font-weight:900;color:var(–gold);text-shadow:0 0 40px rgba(245,166,35,.9);white-space:nowrap;pointer-events:none;z-index:10;opacity:0;}
+.adverb-pop.boom{animation:popBoom 2s cubic-bezier(.17,.67,.35,1.3) forwards;}
+
+/* EXERCISES */
+.ex-section{margin-top:36px;border-top:1px solid rgba(255,255,255,.07);padding-top:30px;}
+.ex-header{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+.ex-header h3{font-family:‘Playfair Display’,serif;font-size:1.2rem;color:var(–gold);}
+.ex-bar{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:10px 16px;margin-bottom:18px;}
+.ex-btn{background:rgba(245,166,35,.1);border:1.5px solid rgba(245,166,35,.35);color:var(–gold);padding:7px 16px;border-radius:8px;font-size:.82rem;font-weight:600;cursor:pointer;font-family:‘DM Sans’,sans-serif;}
+.ex-btn:hover{background:rgba(245,166,35,.2);}
+.ex-info{font-family:monospace;font-size:.74rem;color:rgba(255,255,255,.3);}
+.ex-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:22px 24px;margin-bottom:16px;transition:border .3s;}
+.ex-card.correct-card{border-color:rgba(22,163,74,.5);background:rgba(22,163,74,.05);}
+.ex-card.wrong-card{border-color:rgba(200,16,46,.5);background:rgba(200,16,46,.05);}
+.ex-num{font-family:monospace;font-size:.72rem;color:var(–gold);margin-bottom:6px;}
+.ex-task{font-size:.9rem;color:rgba(255,255,255,.6);margin-bottom:6px;font-style:italic;}
+.ex-hint{font-size:.78rem;color:rgba(255,255,255,.35);margin-bottom:10px;}
+.drop-zone{min-height:46px;border:2px dashed rgba(255,255,255,.15);border-radius:10px;padding:8px 12px;display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin:10px 0;transition:all .2s;}
+.drop-zone.over{border-color:var(–gold);background:rgba(245,166,35,.06);}
+.tile-pool{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0;min-height:40px;}
+.tile{display:inline-flex;align-items:center;padding:7px 14px;border-radius:8px;font-family:monospace;font-size:.82rem;cursor:grab;user-select:none;transition:all .18s;border:1.5px solid rgba(255,255,255,.15);background:rgba(255,255,255,.07);color:rgba(255,255,255,.85);}
+.tile:hover{border-color:var(–gold);color:var(–gold);transform:translateY(-2px);}
+.tile.in-zone{background:rgba(37,99,235,.15);border-color:rgba(37,99,235,.5);color:#93C5FD;}
+.tile.t-correct{background:rgba(22,163,74,.18);border-color:#16A34A;color:#4ADE80;}
+.tile.t-wrong{background:rgba(200,16,46,.18);border-color:#EF4444;color:#FCA5A5;}
+.tile.used{opacity:.35;pointer-events:none;}
+.feedback{display:none;margin-top:10px;padding:12px 16px;border-radius:10px;font-size:.88rem;line-height:1.6;}
+.feedback.show{display:block;}
+.feedback.ok{background:rgba(22,163,74,.12);border:1px solid rgba(22,163,74,.3);color:#86EFAC;}
+.feedback.nope{background:rgba(200,16,46,.1);border:1px solid rgba(200,16,46,.3);color:#FCA5A5;}
+.solution-box{font-family:monospace;font-size:.82rem;color:#93C5FD;background:rgba(37,99,235,.1);border:1px solid rgba(37,99,235,.25);border-radius:8px;padding:10px 14px;margin-top:6px;}
+.check-btn{background:rgba(245,166,35,.12);border:1.5px solid rgba(245,166,35,.4);color:var(–gold);padding:8px 20px;border-radius:8px;font-size:.84rem;font-weight:600;cursor:pointer;font-family:‘DM Sans’,sans-serif;margin-top:10px;}
+.reset-btn{background:transparent;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.4);padding:6px 14px;border-radius:6px;font-size:.78rem;cursor:pointer;margin-top:10px;margin-left:8px;}
+
+/* CONTROLS */
+.controls{display:flex;align-items:center;gap:14px;margin-top:46px;padding-top:28px;border-top:1px solid rgba(255,255,255,.07);}
+.btn-primary{background:var(–esp);color:#fff;border:none;padding:12px 28px;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;}
+.btn-primary:hover{background:#A00F25;}
+.btn-secondary{background:transparent;border:1.5px solid rgba(255,255,255,.2);color:rgba(255,255,255,.65);padding:12px 28px;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;}
+.btn-secondary:hover{border-color:rgba(255,255,255,.5);color:#fff;}
+.btn-secondary:disabled{opacity:.35;cursor:default;}
+.slide-counter{margin-left:auto;font-family:monospace;font-size:.75rem;color:rgba(255,255,255,.3);}
+
+/* QUIZ */
+.quiz-q{font-size:1.15rem;color:#fff;margin-bottom:20px;line-height:1.55;font-family:‘Playfair Display’,serif;}
+.quiz-opts{display:grid;gap:11px;}
+.quiz-opt{background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.12);border-radius:10px;padding:14px 20px;color:rgba(255,255,255,.8);font-size:.92rem;cursor:pointer;text-align:left;transition:all .2s;font-family:‘DM Sans’,sans-serif;width:100%;}
+.quiz-opt:hover:not(:disabled){border-color:var(–gold);background:rgba(245,166,35,.06);}
+.quiz-opt.correct{background:rgba(22,163,74,.2);border-color:#16A34A;color:#4ADE80;}
+.quiz-opt.wrong{background:rgba(200,16,46,.15);border-color:#EF4444;color:#FCA5A5;}
+.quiz-fb{background:rgba(255,255,255,.05);border-radius:12px;padding:16px 22px;margin-top:18px;line-height:1.7;color:rgba(255,255,255,.8);font-size:.9rem;}
+.score-disp{font-family:monospace;font-size:.78rem;color:var(–gold);margin-bottom:6px;}
+.final{text-align:center;padding:30px 0;}
+.final-score{font-family:‘Playfair Display’,serif;font-size:5rem;color:var(–gold);line-height:1;margin:16px 0;}
+.stars{font-size:2.2rem;margin:8px 0;}
+
+/* ANIMATIONS */
+@keyframes runAcross{0%{left:-70px}100%{left:calc(100% + 70px)}}
+@keyframes bounce{from{transform:translateY(0)}to{transform:translateY(-7px)}}
+@keyframes twinkle{from{opacity:.15}to{opacity:.8}}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+@keyframes floatZzz{0%{opacity:0;transform:translateY(0)}20%{opacity:1}80%{opacity:.3}100%{opacity:0;transform:translateY(-55px)}}
+@keyframes moonGlow{from{filter:drop-shadow(0 0 6px rgba(255,236,153,.3))}to{filter:drop-shadow(0 0 18px rgba(255,236,153,.7))}}
+@keyframes ballInOut{0%{transform:translate(20px,10px)}50%{transform:translate(-50px,-40px)}100%{transform:translate(20px,10px)}}
+@keyframes rotHour{to{transform:translateX(-50%) rotate(360deg)}}
+@keyframes rotMin{to{transform:translateX(-50%) rotate(360deg)}}
+@keyframes barRise{from{height:15%}to{height:92%}}
+@keyframes popBoom{0%{opacity:0;transform:translate(-50%,-60%) scale(0) rotate(-10deg)}35%{opacity:1;transform:translate(-50%,-60%) scale(1.1) rotate(3deg)}60%{opacity:1;transform:translate(-50%,-60%) scale(1)}85%{opacity:.9}100%{opacity:0;transform:translate(-50%,-60%) scale(.85)}}
+
+@media(max-width:768px){.sidebar{display:none;}.content{padding:28px 20px;}.grid-2{grid-template-columns:1fr;}.vocab-grid{grid-template-columns:1fr 1fr;}}
+</style>
+
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <span style="font-size:2rem">🇪🇸</span>
+    <div><h1>Los Adverbios</h1><p>Spanisch · 11. Klasse · Grammatik</p></div>
+  </div>
+  <span class="badge">7 Lektionen</span>
+  <button id="menu-btn" onclick="toggleMenu()" style="background:rgba(255,255,255,.18);border:none;color:#fff;width:42px;height:42px;border-radius:10px;font-size:1.4rem;cursor:pointer;display:flex;align-items:center;justify-content:center;margin-left:14px;flex-shrink:0;">☰</button>
+</header>
+
+<!-- OVERLAY MENU -->
+
+<div id="menu-overlay" onclick="toggleMenu()" style="position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;opacity:0;pointer-events:none;transition:opacity .3s;"></div>
+<div id="menu-drawer" style="position:fixed;top:0;left:0;height:100vh;width:300px;background:#0f0c0b;z-index:201;transform:translateX(-100%);transition:transform .3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;box-shadow:8px 0 40px rgba(0,0,0,.5);">
+  <div style="background:linear-gradient(135deg,#C8102E,#8B0000);padding:20px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:4px solid #7a0000;">
+    <div style="display:flex;align-items:center;gap:10px;"><span style="font-size:1.5rem">🇪🇸</span><span style="font-family:'Playfair Display',serif;color:#fff;font-size:1.1rem;font-weight:700">Los Adverbios</span></div>
+    <button onclick="toggleMenu()" style="background:rgba(255,255,255,.15);border:none;color:#fff;width:36px;height:36px;border-radius:8px;font-size:1.2rem;cursor:pointer;">✕</button>
+  </div>
+  <div style="padding:16px 0;overflow-y:auto;flex:1;">
+    <div style="font-family:monospace;font-size:.65rem;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:2px;padding:0 20px 12px;">Lektionen</div>
+    <div class="menu-item" onclick="goTo(0);toggleMenu()"><span class="menu-num" id="mn0">1</span><span>Was ist ein Adverb?</span></div>
+    <div class="menu-item" onclick="goTo(1);toggleMenu()"><span class="menu-num" id="mn1">2</span><span>Bildung mit -mente</span></div>
+    <div class="menu-item" onclick="goTo(2);toggleMenu()"><span class="menu-num" id="mn2">3</span><span>Kategorien</span></div>
+    <div class="menu-item" onclick="goTo(3);toggleMenu()"><span class="menu-num" id="mn3">4</span><span>Adverbien des Orts</span></div>
+    <div class="menu-item" onclick="goTo(4);toggleMenu()"><span class="menu-num" id="mn4">5</span><span>Adverbien der Zeit</span></div>
+    <div class="menu-item" onclick="goTo(5);toggleMenu()"><span class="menu-num" id="mn5">6</span><span>Adverb + Adj./Adv.</span></div>
+    <div class="menu-item" onclick="goTo(6);toggleMenu()"><span class="menu-num" id="mn6">7</span><span>Quiz</span></div>
+    <div style="margin:16px 20px;border-top:1px solid rgba(255,255,255,.07);padding-top:16px;">
+      <div style="font-family:monospace;font-size:.65rem;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;">Weitere Übungen</div>
+      <a href="adverbio-master.html" style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:12px;background:linear-gradient(135deg,rgba(88,204,2,.15),rgba(28,176,246,.08));border:1px solid rgba(88,204,2,.3);text-decoration:none;transition:background .2s;" onmouseover="this.style.background='linear-gradient(135deg,rgba(88,204,2,.25),rgba(28,176,246,.15))'" onmouseout="this.style.background='linear-gradient(135deg,rgba(88,204,2,.15),rgba(28,176,246,.08))'">
+        <span style="font-size:1.6rem">🦉</span>
+        <div><div style="color:#58cc02;font-weight:800;font-size:.9rem">AdverbioMaster</div><div style="color:rgba(255,255,255,.35);font-size:.75rem;margin-top:2px">Interaktive Übungen →</div></div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+.menu-item{display:flex;align-items:center;gap:12px;padding:13px 20px;cursor:pointer;color:rgba(255,255,255,.6);font-size:.9rem;transition:all .2s;border-left:3px solid transparent;}
+.menu-item:hover{background:rgba(255,255,255,.05);color:#fff;border-left-color:rgba(245,166,35,.5);}
+.menu-item.menu-active{background:rgba(245,166,35,.08);color:var(--gold);border-left-color:var(--gold);font-weight:600;}
+.menu-item.menu-done{color:#16A34A;}
+.menu-num{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:.7rem;flex-shrink:0;}
+.menu-item.menu-active .menu-num{background:var(--gold);color:var(--dark);}
+.menu-item.menu-done .menu-num{background:#16A34A;color:#fff;}
+</style>
+
+<div class="main">
+  <nav class="sidebar">
+    <div class="sidebar-title">Inhalt</div>
+    <div class="nav-item active" id="nav0" onclick="goTo(0)"><span class="nav-num" id="nn0">1</span>Definition</div>
+    <div class="nav-item" id="nav1" onclick="goTo(1)"><span class="nav-num" id="nn1">2</span>Bildung -mente</div>
+    <div class="nav-item" id="nav2" onclick="goTo(2)"><span class="nav-num" id="nn2">3</span>Kategorien</div>
+    <div class="nav-item" id="nav3" onclick="goTo(3)"><span class="nav-num" id="nn3">4</span>Ort-Adverbien</div>
+    <div class="nav-item" id="nav4" onclick="goTo(4)"><span class="nav-num" id="nn4">5</span>Zeit-Adverbien</div>
+    <div class="nav-item" id="nav5" onclick="goTo(5)"><span class="nav-num" id="nn5">6</span>Verstärker</div>
+    <div class="nav-item" id="nav6" onclick="goTo(6)"><span class="nav-num" id="nn6">7</span>Quiz</div>
+    <div style="border-top:1px solid rgba(255,255,255,.07);padding-top:16px;margin-top:16px;padding-left:0;padding-right:0;">
+      <a href="adverbio-master.html" class="sidebar-link">
+        <span style="font-size:1.3rem">🦉</span>
+        <div>
+          <div style="font-size:.82rem;font-weight:800;color:#58cc02">AdverbioMaster</div>
+          <div style="font-size:.7rem;color:rgba(255,255,255,.35);font-weight:400">Interaktive Übungen →</div>
+        </div>
+      </a>
+    </div>
+  </nav>
+
+  <main class="content">
+
+```
+<!-- SLIDE 0 -->
+<div class="slide active" id="slide0">
+  <div class="slide-label">Lektion 1</div>
+  <h2 class="slide-title">Was ist ein Adverb?</h2>
+  <p class="slide-sub">Definition und Grundfunktion</p>
+  <div class="scene" id="scene0" onclick="triggerPop('pop0','rápidamente')" style="background:linear-gradient(180deg,#060d1a,#0a1628 60%,#1a2a10)">
+    <div style="position:absolute;bottom:0;left:0;right:0;height:38px;background:linear-gradient(180deg,#1a2a10,#0f1a08);border-top:2px solid rgba(100,180,50,.15)"></div>
+    <span style="position:absolute;bottom:36px;font-size:2rem;animation:runAcross 3s linear infinite,bounce .28s ease-in-out infinite alternate">🏃</span>
+    <span style="position:absolute;bottom:38px;font-size:1.65rem;animation:runAcross 3s linear .9s infinite,bounce .28s ease-in-out infinite alternate">🏃‍♀️</span>
+    <span style="position:absolute;bottom:40px;font-size:1.4rem;animation:runAcross 3s linear 1.8s infinite,bounce .28s ease-in-out infinite alternate">🧒</span>
+    <div class="adverb-pop" id="pop0">rápidamente</div>
+    <div class="scene-tag">Adverb der Weise</div>
+    <button class="scene-btn" onclick="event.stopPropagation();triggerPop('pop0','rápidamente')">▶ Abspielen</button>
+  </div>
+  <div class="card">
+    <h3>📌 Definition</h3>
+    <p>Adverbien sind <strong>unflexible Wörter</strong> die Verben, Adjektive oder ganze Sätze modifizieren.</p>
+    <div class="tags"><span class="tag">Art &amp; Weise</span><span class="tag">Ort</span><span class="tag">Zeit</span><span class="tag">Menge</span><span class="tag">Ursache</span><span class="tag">Grad der Gewissheit</span></div>
+  </div>
+  <div class="example-box">
+    <div class="es">Él habla español <span class="hl">perfectamente</span>.</div><div class="de">→ Er spricht perfekt Spanisch.</div><br>
+    <div class="es"><span class="hl">Siempre</span> desayuno <span class="hl">temprano</span>.</div><div class="de">→ Ich frühstücke immer früh.</div>
+  </div>
+  <div class="rule-box">💡 <strong>Unflexibel:</strong> Adverbien ändern ihre Form nie — kein Genus, kein Numerus, kein Kasus.</div>
+  <div class="ex-section" id="exs0"></div>
+  <div class="controls">
+    <button class="btn-secondary" disabled>← Zurück</button>
+    <button class="btn-primary" onclick="goTo(1)">Weiter →</button>
+    <span class="slide-counter">1 / 7</span>
+  </div>
+</div>
+
+<!-- SLIDE 1 -->
+<div class="slide" id="slide1">
+  <div class="slide-label">Lektion 2</div>
+  <h2 class="slide-title">Bildung mit -mente</h2>
+  <p class="slide-sub">Adjektiv im Femininum + -mente = Adverb</p>
+  <div class="card"><h3>📐 Die Regel</h3><p>Aus dem <strong>Femininum des Adjektivs</strong> + <strong style="color:var(--gold)">–mente</strong></p></div>
+  <table>
+    <tr><th>Maskulinum</th><th></th><th>Femininum</th><th></th><th>Adverb</th><th>Bedeutung</th></tr>
+    <tr><td class="tag-esp">rápido</td><td class="arr">→</td><td class="tag-esp">rápida</td><td class="arr">→</td><td class="tag-esp">rápida<strong style="color:var(--gold)">mente</strong></td><td class="tag-de">schnell</td></tr>
+    <tr><td class="tag-esp">fácil</td><td class="arr">→</td><td class="tag-esp">fácil</td><td class="arr">→</td><td class="tag-esp">fácil<strong style="color:var(--gold)">mente</strong></td><td class="tag-de">leicht</td></tr>
+    <tr><td class="tag-esp">tranquilo</td><td class="arr">→</td><td class="tag-esp">tranquila</td><td class="arr">→</td><td class="tag-esp">tranquila<strong style="color:var(--gold)">mente</strong></td><td class="tag-de">ruhig</td></tr>
+    <tr><td class="tag-esp">claro</td><td class="arr">→</td><td class="tag-esp">clara</td><td class="arr">→</td><td class="tag-esp">clara<strong style="color:var(--gold)">mente</strong></td><td class="tag-de">klar</td></tr>
+  </table>
+  <div class="rule-box">💡 <strong>Akzent-Tipp:</strong> Der Originalakzent bleibt: <em>rápido → rápidamente</em> · <em>fácil → fácilmente</em></div>
+  <div class="scene" id="scene1" onclick="triggerPop('pop1','rápidamente')" style="background:linear-gradient(180deg,#060d1a,#0a1628 60%,#1a2a10)">
+    <div style="position:absolute;bottom:0;left:0;right:0;height:38px;background:linear-gradient(180deg,#1a2a10,#0f1a08);border-top:2px solid rgba(100,180,50,.15)"></div>
+    <span style="position:absolute;bottom:36px;font-size:2.2rem;animation:runAcross 3s linear infinite,bounce .28s ease-in-out infinite alternate">🏃</span>
+    <span style="position:absolute;bottom:39px;font-size:1.8rem;animation:runAcross 3s linear .9s infinite,bounce .28s ease-in-out infinite alternate">🏃‍♀️</span>
+    <div class="adverb-pop" id="pop1">rápidamente</div>
+    <div class="scene-tag">Los niños corren...</div>
+    <button class="scene-btn" onclick="event.stopPropagation();triggerPop('pop1','rápidamente')">▶ Abspielen</button>
+  </div>
+  <div class="ex-section" id="exs1"></div>
+  <div class="controls">
+    <button class="btn-secondary" onclick="goTo(0)">← Zurück</button>
+    <button class="btn-primary" onclick="goTo(2)">Weiter →</button>
+    <span class="slide-counter">2 / 7</span>
+  </div>
+</div>
+
+<!-- SLIDE 2 -->
+<div class="slide" id="slide2">
+  <div class="slide-label">Lektion 3</div>
+  <h2 class="slide-title">Kategorien der Adverbien</h2>
+  <p class="slide-sub">Fünf Hauptgruppen mit Beispielen</p>
+  <div class="grid-2">
+    <div class="cat-card"><div class="cat-icon">⏰</div><div class="cat-title">Adverbien der Zeit</div><div class="cat-sub">de tiempo</div><div class="cat-words">generalmente · frecuentemente · actualmente</div></div>
+    <div class="cat-card"><div class="cat-icon">🎯</div><div class="cat-title">Adverbien der Weise</div><div class="cat-sub">de modo</div><div class="cat-words">rápidamente · claramente · tranquilamente</div></div>
+    <div class="cat-card"><div class="cat-icon">📍</div><div class="cat-title">Adverbien des Orts</div><div class="cat-sub">de lugar</div><div class="cat-words">dentro · lejos · cerca</div></div>
+    <div class="cat-card"><div class="cat-icon">🔢</div><div class="cat-title">Adverbien der Menge</div><div class="cat-sub">de cantidad</div><div class="cat-words">mucho · demasiado · bastante</div></div>
+  </div>
+  <div class="cat-card" style="margin-bottom:18px"><div class="cat-icon">🗣️</div><div class="cat-title">Satzadverbien</div><div class="cat-sub">oracionales</div><div class="cat-words">probablemente · desafortunadamente · afortunadamente</div></div>
+  <div class="scene" id="scene2" onclick="triggerPop('pop2','tranquilamente')" style="background:linear-gradient(180deg,#05050f,#0a0a1a)">
+    <div style="position:absolute;top:10px;left:18px;font-size:2.5rem;animation:moonGlow 4s ease-in-out infinite alternate">🌙</div>
+    <div style="position:absolute;bottom:28px;left:50%;transform:translateX(-50%);font-size:3.5rem">🛏️</div>
+    <div style="position:absolute;bottom:56px;left:calc(50% - 5px);font-size:2rem;animation:breathe 3.5s ease-in-out infinite">👶</div>
+    <div style="position:absolute;bottom:95px;left:calc(50% + 20px);font-family:monospace;font-weight:700;color:rgba(147,197,253,.7);animation:floatZzz 2.8s ease-in-out infinite">z</div>
+    <div class="adverb-pop" id="pop2">tranquilamente</div>
+    <div class="scene-tag">El bebé duerme...</div>
+    <button class="scene-btn" onclick="event.stopPropagation();triggerPop('pop2','tranquilamente')">▶ Abspielen</button>
+  </div>
+  <div class="ex-section" id="exs2"></div>
+  <div class="controls">
+    <button class="btn-secondary" onclick="goTo(1)">← Zurück</button>
+    <button class="btn-primary" onclick="goTo(3)">Weiter →</button>
+    <span class="slide-counter">3 / 7</span>
+  </div>
+</div>
+
+<!-- SLIDE 3 -->
+<div class="slide" id="slide3">
+  <div class="slide-label">Lektion 4</div>
+  <h2 class="slide-title">Adverbien des Orts</h2>
+  <p class="slide-sub">Adverbios de lugar — vollständige Referenz</p>
+  <div class="vocab-block"><div class="vocab-head">📍 Position &amp; Nähe</div><div class="vocab-grid">
+    <div class="vocab-cell"><span class="vocab-es">aquí</span><span class="vocab-de">hier</span></div>
+    <div class="vocab-cell"><span class="vocab-es">ahí</span><span class="vocab-de">da</span></div>
+    <div class="vocab-cell"><span class="vocab-es">allí</span><span class="vocab-de">dort</span></div>
+    <div class="vocab-cell"><span class="vocab-es">cerca</span><span class="vocab-de">in der Nähe</span></div>
+    <div class="vocab-cell"><span class="vocab-es">lejos</span><span class="vocab-de">weit weg</span></div>
+    <div class="vocab-cell"><span class="vocab-es">enfrente</span><span class="vocab-de">gegenüber</span></div>
+    <div class="vocab-cell"><span class="vocab-es">alrededor</span><span class="vocab-de">rund um</span></div>
+  </div></div>
+  <div class="vocab-block"><div class="vocab-head">↕ Richtung &amp; Ebene</div><div class="vocab-grid">
+    <div class="vocab-cell"><span class="vocab-es">encima</span><span class="vocab-de">oben drauf</span></div>
+    <div class="vocab-cell"><span class="vocab-es">debajo</span><span class="vocab-de">unter</span></div>
+    <div class="vocab-cell"><span class="vocab-es">arriba</span><span class="vocab-de">oben</span></div>
+    <div class="vocab-cell"><span class="vocab-es">abajo</span><span class="vocab-de">unten</span></div>
+    <div class="vocab-cell"><span class="vocab-es">delante</span><span class="vocab-de">vorne</span></div>
+    <div class="vocab-cell"><span class="vocab-es">detrás</span><span class="vocab-de">hinter</span></div>
+  </div></div>
+  <div class="vocab-block"><div class="vocab-head">🚪 Innen / Außen</div><div class="vocab-grid">
+    <div class="vocab-cell"><span class="vocab-es">dentro</span><span class="vocab-de">innerhalb</span></div>
+    <div class="vocab-cell"><span class="vocab-es">adentro</span><span class="vocab-de">hinein (LatAm)</span></div>
+    <div class="vocab-cell"><span class="vocab-es">fuera</span><span class="vocab-de">außerhalb</span></div>
+    <div class="vocab-cell"><span class="vocab-es">afuera</span><span class="vocab-de">raus (LatAm)</span></div>
+  </div></div>
+  <div class="rule-box">💡 <strong>LatAm-Hinweis:</strong> adentro/afuera in Lateinamerika häufiger als dentro/fuera.</div>
+  <div class="scene" id="scene3" onclick="triggerPopAlt('pop3','¡dentro!','¡fuera!')" style="background:linear-gradient(180deg,#0a0d14,#111827)">
+    <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-45%);font-size:4rem">📦</div>
+    <div style="position:absolute;top:50%;left:50%;transform:translate(-20%,-50%);font-size:1.6rem;animation:ballInOut 3s ease-in-out infinite">⚽</div>
+    <div class="adverb-pop" id="pop3">¡dentro!</div>
+    <div class="scene-tag">Adverbios de lugar</div>
+    <button class="scene-btn" onclick="event.stopPropagation();triggerPop('pop3','¡dentro!')">▶ Abspielen</button>
+  </div>
+  <div class="ex-section" id="exs3"></div>
+  <div class="controls">
+    <button class="btn-secondary" onclick="goTo(2)">← Zurück</button>
+    <button class="btn-primary" onclick="goTo(4)">Weiter →</button>
+    <span class="slide-counter">4 / 7</span>
+  </div>
+</div>
+
+<!-- SLIDE 4 -->
+<div class="slide" id="slide4">
+  <div class="slide-label">Lektion 5</div>
+  <h2 class="slide-title">Adverbien der Zeit</h2>
+  <p class="slide-sub">Adverbios de tiempo — vollständige Referenz</p>
+  <div class="vocab-block"><div class="vocab-head">📅 Zeitpunkte</div><div class="vocab-grid">
+    <div class="vocab-cell"><span class="vocab-es">ahora</span><span class="vocab-de">jetzt</span></div>
+    <div class="vocab-cell"><span class="vocab-es">hoy</span><span class="vocab-de">heute</span></div>
+    <div class="vocab-cell"><span class="vocab-es">mañana</span><span class="vocab-de">morgen</span></div>
+    <div class="vocab-cell"><span class="vocab-es">ayer</span><span class="vocab-de">gestern</span></div>
+    <div class="vocab-cell"><span class="vocab-es">temprano</span><span class="vocab-de">früh</span></div>
+    <div class="vocab-cell"><span class="vocab-es">tarde</span><span class="vocab-de">spät</span></div>
+    <div class="vocab-cell"><span class="vocab-es">pronto</span><span class="vocab-de">bald</span></div>
+  </div></div>
+  <div class="vocab-block"><div class="vocab-head">🔁 Häufigkeit &amp; Abfolge</div><div class="vocab-grid">
+    <div class="vocab-cell"><span class="vocab-es">siempre</span><span class="vocab-de">immer</span></div>
+    <div class="vocab-cell"><span class="vocab-es">nunca</span><span class="vocab-de">nie</span></div>
+    <div class="vocab-cell"><span class="vocab-es">ya</span><span class="vocab-de">schon / nicht mehr</span></div>
+    <div class="vocab-cell"><span class="vocab-es">todavía</span><span class="vocab-de">immer noch</span></div>
+    <div class="vocab-cell"><span class="vocab-es">después</span><span class="vocab-de">danach</span></div>
+    <div class="vocab-cell"><span class="vocab-es">antes</span><span class="vocab-de">früher</span></div>
+    <div class="vocab-cell"><span class="vocab-es">luego</span><span class="vocab-de">dann</span></div>
+  </div></div>
+  <div class="rule-box">💡 <strong>ya vs. todavía:</strong><br><em>Ya he comido.</em> → schon fertig · <em>Todavía espero.</em> → wartet noch · <em>Ya no vivo aquí.</em> → nicht mehr</div>
+  <div class="scene" id="scene4" onclick="triggerPop('pop4','¡siempre!')" style="background:linear-gradient(160deg,#05050d,#0a0a16)">
+    <div style="position:absolute;top:18%;left:50%;transform:translate(-50%,-50%);width:110px;height:110px;border-radius:50%;border:3px solid rgba(245,166,35,.45);background:rgba(0,0,0,.5);box-shadow:0 0 30px rgba(245,166,35,.18)">
+      <div style="position:absolute;bottom:50%;left:50%;width:3px;height:30px;transform-origin:bottom center;background:var(--gold);border-radius:3px;transform:translateX(-50%);animation:rotHour 12s linear infinite"></div>
+      <div style="position:absolute;bottom:50%;left:50%;width:2px;height:40px;transform-origin:bottom center;background:var(--gold);border-radius:3px;transform:translateX(-50%);animation:rotMin 2s linear infinite"></div>
+      <div style="position:absolute;top:50%;left:50%;width:8px;height:8px;border-radius:50%;background:var(--gold);transform:translate(-50%,-50%)"></div>
+    </div>
+    <div class="adverb-pop" id="pop4">¡siempre!</div>
+    <div class="scene-tag">Adverbios de tiempo</div>
+    <button class="scene-btn" onclick="event.stopPropagation();triggerPop('pop4','¡siempre!')">▶ Abspielen</button>
+  </div>
+  <div class="ex-section" id="exs4"></div>
+  <div class="controls">
+    <button class="btn-secondary" onclick="goTo(3)">← Zurück</button>
+    <button class="btn-primary" onclick="goTo(5)">Weiter →</button>
+    <span class="slide-counter">5 / 7</span>
+  </div>
+</div>
+
+<!-- SLIDE 5 -->
+<div class="slide" id="slide5">
+  <div class="slide-label">Lektion 6</div>
+  <h2 class="slide-title">Adverb + Adjektiv / Adverb</h2>
+  <p class="slide-sub">Adverbien als Verstärker oder Abschwächer</p>
+  <div class="card"><h3>📖 Adverb als Verstärker</h3><p>Adverbien können <strong>Adjektive</strong> oder andere <strong>Adverbien</strong> modifizieren.</p></div>
+  <div class="example-box">
+    <div class="es">El libro es <span class="hl">muy</span> interesante.</div><div class="de">→ Adverb + Adjektiv</div><br>
+    <div class="es">El profesor habla <span class="hl">muy</span> claramente.</div><div class="de">→ Adverb + Adverb</div>
+  </div>
+  <div class="vocab-block"><div class="vocab-head">⚡ Verstärker-Übersicht</div><div class="vocab-grid">
+    <div class="vocab-cell"><span class="vocab-es">muy</span><span class="vocab-de">sehr</span></div>
+    <div class="vocab-cell"><span class="vocab-es">bastante</span><span class="vocab-de">ziemlich</span></div>
+    <div class="vocab-cell"><span class="vocab-es">demasiado</span><span class="vocab-de">zu viel / zu sehr</span></div>
+    <div class="vocab-cell"><span class="vocab-es">poco</span><span class="vocab-de">wenig / kaum</span></div>
+    <div class="vocab-cell"><span class="vocab-es">tan</span><span class="vocab-de">so</span></div>
+  </div></div>
+  <div class="rule-box">💡 <strong>Achtung:</strong> <em>muy</em> steht NICHT vor <em>mucho/poco</em> — man sagt nur <em>mucho</em>, nie <em>muy mucho</em>.</div>
+  <div class="scene" id="scene5" onclick="triggerPop('pop5','¡muy bien!')" style="background:linear-gradient(160deg,#0a0500,#120800)">
+    <div style="position:absolute;bottom:30px;left:50%;transform:translateX(-50%);display:flex;align-items:flex-end;gap:20px">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><div style="font-size:1.2rem">🥶</div><div style="width:32px;height:55px;border-radius:10px 10px 0 0;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);overflow:hidden;position:relative"><div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(180deg,#3B82F6,#1D4ED8);animation:barRise 2.2s ease-in-out infinite alternate;border-radius:8px 8px 0 0"></div></div><div style="font-family:monospace;font-size:.6rem;color:rgba(255,255,255,.45)">poco</div></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><div style="font-size:1.2rem">😊</div><div style="width:32px;height:80px;border-radius:10px 10px 0 0;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);overflow:hidden;position:relative"><div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(180deg,#F59E0B,#D97706);animation:barRise 2.2s ease-in-out .4s infinite alternate;border-radius:8px 8px 0 0"></div></div><div style="font-family:monospace;font-size:.6rem;color:rgba(255,255,255,.45)">bastante</div></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><div style="font-size:1.2rem">🥵</div><div style="width:32px;height:110px;border-radius:10px 10px 0 0;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);overflow:hidden;position:relative"><div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(180deg,#EF4444,#B91C1C);animation:barRise 2.2s ease-in-out .8s infinite alternate;border-radius:8px 8px 0 0"></div></div><div style="font-family:monospace;font-size:.6rem;color:rgba(255,255,255,.45)">muy</div></div>
+    </div>
+    <div class="adverb-pop" id="pop5">¡muy bien!</div>
+    <div class="scene-tag">Adverbios de cantidad</div>
+    <button class="scene-btn" onclick="event.stopPropagation();triggerPop('pop5','¡muy bien!')">▶ Abspielen</button>
+  </div>
+  <div class="ex-section" id="exs5"></div>
+  <div class="controls">
+    <button class="btn-secondary" onclick="goTo(4)">← Zurück</button>
+    <button class="btn-primary" onclick="goTo(6)">Zum Quiz →</button>
+    <span class="slide-counter">6 / 7</span>
+  </div>
+</div>
+
+<!-- SLIDE 6 QUIZ -->
+<div class="slide" id="slide6">
+  <div class="slide-label">Lektion 7</div>
+  <h2 class="slide-title">Quiz</h2>
+  <p class="slide-sub">Teste dein Wissen — 10 Fragen</p>
+  <div id="quiz-body"></div>
+  <div class="controls">
+    <button class="btn-secondary" onclick="goTo(5)">← Zurück</button>
+    <span class="slide-counter">7 / 7</span>
+  </div>
+</div>
+```
+
+  </main>
+</div>
+
+<script>
+// ── DATA ──
+const QUIZ=[
+  {q:"Welche Eigenschaft haben Adverbien grundsätzlich?",opts:["Flektieren nach Genus","Unflexibel — nicht veränderbar","Stimmen mit Verb überein","Enden immer auf -mente"],ans:1,exp:"Adverbien sind <b>unflexible Wörter</b> — ihr zentrales Merkmal."},
+  {q:"Bilde das Adverb aus: sistemático",opts:["sistemáticamente","sistematicamento","sistemáticalmente","sistematicaménte"],ans:0,exp:"<b>sistemático → sistemática + mente = sistemáticamente</b>"},
+  {q:'Was bedeutet "Probablemente llueva mañana"?',opts:["Gestern regnete es","Es regnet morgens","Morgen wird es wahrscheinlich regnen","Es hat aufgehört zu regnen"],ans:2,exp:"<i>Probablemente</i> = wahrscheinlich — klassisches Satzadverb."},
+  {q:'Adverb für: "Las llaves están ___ del bolso."',opts:["lejos","encima","dentro","enfrente"],ans:2,exp:"<b>dentro</b> = innerhalb. dentro del bolso = in der Tasche."},
+  {q:"Unterschied ya vs. todavía?",opts:["Beide gleich","ya = schon (fertig), todavía = immer noch","ya = vielleicht, todavía = sicher","ya = oft, todavía = selten"],ans:1,exp:"Ya he comido (fertig) — Todavía espero (andauernd)."},
+  {q:"In welchem Satz bestimmt Adverb ein anderes Adverb?",opts:["Ella canta bien.","El libro es muy interesante.","El profesor habla muy claramente.","Siempre desayuno temprano."],ans:2,exp:"<b>muy</b> verstärkt <b>claramente</b> — Adverb + Adverb!"},
+  {q:'Was bedeutet "bastante"?',opts:["demasiado","sehr","ziemlich","wenig"],ans:2,exp:"<b>bastante</b> = ziemlich. Bsp: bastante rápido."},
+  {q:"Welches ist KEIN Ortsadverb?",opts:["encima","dentro","raramente","detrás"],ans:2,exp:"<b>raramente</b> = selten — Adverb der Häufigkeit."},
+  {q:"Adverb aus fácil?",opts:["fácilamente","fácilmente","fácilmenta","fácilamentos"],ans:1,exp:"fácil + mente = fácilmente (kein Genuswechsel nötig)."},
+  {q:'"Desafortunadamente no pude ir." — Kategorie?',opts:["Adverb der Menge","Adverb des Orts","Satzadverb","Adverb der Weise"],ans:2,exp:"<b>Desafortunadamente</b> (leider) = Satzadverb."}
+];
+
+const POOL={
+  0:[
+    {task:"Ordne den Satz:",hint:"Ich frühstücke immer früh.",solution:["Siempre","desayuno","temprano."],pool:["Siempre","desayuno","temprano.","nunca","tarde.","como"]},
+    {task:"Bilde den Satz:",hint:"Der Hund trinkt sehr viel Wasser.",solution:["El","perro","bebe","mucha","agua."],pool:["El","perro","bebe","mucha","agua.","poca","gato","come"]},
+    {task:"Ordne die Bausteine:",hint:"Er spricht perfekt Spanisch.",solution:["Él","habla","español","perfectamente."],pool:["Él","habla","español","perfectamente.","lentamente.","ella","inglés"]},
+    {task:"Bilde den Satz:",hint:"Sie singt sehr gut.",solution:["Ella","canta","muy","bien."],pool:["Ella","canta","muy","bien.","mal.","él","baila","poco"]},
+    {task:"Ordne den Satz:",hint:"Ich schlafe nie früh.",solution:["Nunca","duermo","temprano."],pool:["Nunca","duermo","temprano.","siempre","tarde.","como","pronto"]},
+    {task:"Bilde den Satz:",hint:"Das Kind spielt gut.",solution:["El","niño","juega","bien."],pool:["El","niño","juega","bien.","mal.","niña","trabaja","bastante"]},
+    {task:"Ordne die Wörter:",hint:"Wir essen immer zusammen.",solution:["Siempre","comemos","juntos."],pool:["Siempre","comemos","juntos.","nunca","solos.","bebemos","tarde"]},
+    {task:"Bilde den Satz:",hint:"Er arbeitet sehr viel.",solution:["Él","trabaja","mucho."],pool:["Él","trabaja","mucho.","poco.","ella","estudia","bastante"]},
+    {task:"Ordne den Satz:",hint:"Sie läuft ziemlich schnell.",solution:["Ella","corre","bastante","rápido."],pool:["Ella","corre","bastante","rápido.","lento.","él","camina","muy"]},
+    {task:"Bilde den Satz:",hint:"Ich schlafe nie gut.",solution:["Nunca","duermo","bien."],pool:["Nunca","duermo","bien.","siempre","mal.","como","temprano."]},
+    {task:"Ordne die Bausteine:",hint:"Er isst sehr wenig.",solution:["Él","come","muy","poco."],pool:["Él","come","muy","poco.","mucho.","ella","bebe","bastante"]},
+    {task:"Bilde den Satz:",hint:"Sie arbeitet immer gut.",solution:["Ella","trabaja","siempre","bien."],pool:["Ella","trabaja","siempre","bien.","nunca","mal.","él","estudia"]},
+    {task:"Ordne den Satz:",hint:"Er spricht nie laut.",solution:["Él","nunca","habla","alto."],pool:["Él","nunca","habla","alto.","siempre","bajo.","ella","canta"]},
+    {task:"Bilde den Satz:",hint:"Sie schläft sehr gut.",solution:["Ella","duerme","muy","bien."],pool:["Ella","duerme","muy","bien.","mal.","él","trabaja","bastante"]},
+    {task:"Ordne die Wörter:",hint:"Wir lernen immer viel.",solution:["Siempre","aprendemos","mucho."],pool:["Siempre","aprendemos","mucho.","nunca","poco.","trabajamos","bastante"]},
+    {task:"Bilde den Satz:",hint:"Er tanzt sehr gut.",solution:["Él","baila","muy","bien."],pool:["Él","baila","muy","bien.","mal.","ella","canta","bastante"]},
+    {task:"Ordne den Satz:",hint:"Sie isst immer früh.",solution:["Ella","siempre","come","temprano."],pool:["Ella","siempre","come","temprano.","nunca","tarde.","él","duerme"]},
+    {task:"Bilde den Satz:",hint:"Er läuft nie langsam.",solution:["Él","nunca","corre","lento."],pool:["Él","nunca","corre","lento.","siempre","rápido.","ella","camina"]},
+    {task:"Ordne die Bausteine:",hint:"Sie trinkt ziemlich viel.",solution:["Ella","bebe","bastante."],pool:["Ella","bebe","bastante.","poco.","él","come","mucho.","nunca"]},
+    {task:"Bilde den Satz:",hint:"Wir arbeiten immer zusammen.",solution:["Siempre","trabajamos","juntos."],pool:["Siempre","trabajamos","juntos.","nunca","solos.","estudiamos","bastante"]},
+    {task:"Ordne den Satz:",hint:"Er schreibt sehr gut.",solution:["Él","escribe","muy","bien."],pool:["Él","escribe","muy","bien.","mal.","ella","lee","bastante"]},
+    {task:"Bilde den Satz:",hint:"Sie spricht nie laut.",solution:["Ella","nunca","habla","alto."],pool:["Ella","nunca","habla","alto.","siempre","bajo.","él","canta"]},
+    {task:"Ordne die Wörter:",hint:"Er lernt immer viel.",solution:["Él","siempre","aprende","mucho."],pool:["Él","siempre","aprende","mucho.","nunca","poco.","ella","trabaja"]},
+    {task:"Bilde den Satz:",hint:"Sie läuft sehr schnell.",solution:["Ella","corre","muy","rápido."],pool:["Ella","corre","muy","rápido.","lento.","él","camina","bastante"]},
+    {task:"Ordne den Satz:",hint:"Er isst immer gut.",solution:["Él","siempre","come","bien."],pool:["Él","siempre","come","bien.","nunca","mal.","ella","bebe","bastante"]},
+  ],
+  1:[
+    {task:"Adverb auf -mente:",hint:"Kinder laufen schnell.",solution:["Los","niños","corren","rápidamente."],pool:["Los","niños","corren","rápidamente.","lentamente.","chicos","caminan"]},
+    {task:"Welches -mente passt?",hint:"Das Mädchen singt schön.",solution:["La","chica","canta","bellamente."],pool:["La","chica","canta","bellamente.","tristemente.","chico","baila"]},
+    {task:"Ordne den Satz:",hint:"Er erklärt die Lektion klar.",solution:["Él","explica","la","lección","claramente."],pool:["Él","explica","la","lección","claramente.","oscuramente.","ella","aprende"]},
+    {task:"Bilde den Satz:",hint:"Sie arbeiten systematisch.",solution:["Ellos","trabajan","sistemáticamente."],pool:["Ellos","trabajan","sistemáticamente.","rápidamente.","ellas","estudian","fácilmente."]},
+    {task:"Ordne die Bausteine:",hint:"Das Baby schläft ruhig.",solution:["El","bebé","duerme","tranquilamente."],pool:["El","bebé","duerme","tranquilamente.","nerviosamente.","niño","come"]},
+    {task:"Bilde den Satz:",hint:"Sie liest traurig.",solution:["Ella","lee","tristemente."],pool:["Ella","lee","tristemente.","alegremente.","él","escribe","lentamente."]},
+    {task:"Welches Adverb passt?",hint:"Er lernt leicht.",solution:["Él","aprende","fácilmente."],pool:["Él","aprende","fácilmente.","difícilmente.","ella","trabaja","rápidamente."]},
+    {task:"Ordne den Satz:",hint:"Sie sprechen langsam.",solution:["Ellos","hablan","lentamente."],pool:["Ellos","hablan","lentamente.","rápidamente.","ellas","corren","claramente."]},
+    {task:"Bilde den Satz:",hint:"Er schreibt perfekt.",solution:["Él","escribe","perfectamente."],pool:["Él","escribe","perfectamente.","lentamente.","ella","dibuja","claramente."]},
+    {task:"Adverb einsetzen:",hint:"Sie tanzt wunderschön.",solution:["Ella","baila","bellamente."],pool:["Ella","baila","bellamente.","tristemente.","él","canta","rápidamente."]},
+    {task:"Ordne die Wörter:",hint:"Er fährt schnell.",solution:["Él","conduce","rápidamente."],pool:["Él","conduce","rápidamente.","lentamente.","ella","corre","fácilmente."]},
+    {task:"Bilde den Satz:",hint:"Sie antwortet klar.",solution:["Ella","responde","claramente."],pool:["Ella","responde","claramente.","oscuramente.","él","pregunta","rápidamente."]},
+    {task:"Ordne den Satz:",hint:"Er spielt wunderschön.",solution:["Él","juega","bellamente."],pool:["Él","juega","bellamente.","tristemente.","ella","canta","lentamente."]},
+    {task:"Bilde den Satz:",hint:"Sie arbeitet langsam.",solution:["Ella","trabaja","lentamente."],pool:["Ella","trabaja","lentamente.","rápidamente.","él","estudia","claramente."]},
+    {task:"Adverb auf -mente:",hint:"Er singt traurig.",solution:["Él","canta","tristemente."],pool:["Él","canta","tristemente.","alegremente.","ella","baila","bellamente."]},
+    {task:"Ordne die Bausteine:",hint:"Sie lernen leicht.",solution:["Ellos","aprenden","fácilmente."],pool:["Ellos","aprenden","fácilmente.","difícilmente.","ellas","trabajan","rápidamente."]},
+    {task:"Bilde den Satz:",hint:"Er erklärt alles ruhig.",solution:["Él","explica","todo","tranquilamente."],pool:["Él","explica","todo","tranquilamente.","nerviosamente.","ella","enseña","claramente."]},
+    {task:"Ordne den Satz:",hint:"Sie schreiben systematisch.",solution:["Ellas","escriben","sistemáticamente."],pool:["Ellas","escriben","sistemáticamente.","rápidamente.","ellos","leen","claramente."]},
+    {task:"Welches Adverb passt?",hint:"Er arbeitet ruhig.",solution:["Él","trabaja","tranquilamente."],pool:["Él","trabaja","tranquilamente.","nerviosamente.","ella","estudia","lentamente."]},
+    {task:"Bilde den Satz:",hint:"Sie laufen leicht.",solution:["Ellas","corren","fácilmente."],pool:["Ellas","corren","fácilmente.","difícilmente.","ellos","caminan","rápidamente."]},
+    {task:"Ordne die Wörter:",hint:"Er spricht klar.",solution:["Él","habla","claramente."],pool:["Él","habla","claramente.","oscuramente.","ella","escribe","lentamente."]},
+    {task:"Adverb einsetzen:",hint:"Sie malen schön.",solution:["Ellas","pintan","bellamente."],pool:["Ellas","pintan","bellamente.","tristemente.","ellos","dibujan","rápidamente."]},
+    {task:"Bilde den Satz:",hint:"Er fährt langsam.",solution:["Él","conduce","lentamente."],pool:["Él","conduce","lentamente.","rápidamente.","ella","corre","tranquilamente."]},
+    {task:"Ordne den Satz:",hint:"Sie erklärt perfekt.",solution:["Ella","explica","perfectamente."],pool:["Ella","explica","perfectamente.","imperfectamente.","él","enseña","claramente."]},
+    {task:"Bilde den Satz:",hint:"Er lernt schnell.",solution:["Él","aprende","rápidamente."],pool:["Él","aprende","rápidamente.","lentamente.","ella","trabaja","fácilmente."]},
+  ],
+  2:[
+    {task:"Adverb der Zeit:",hint:"Normalerweise esse ich Brot.",solution:["Generalmente","como","pan","en","el","desayuno."],pool:["Generalmente","como","pan","en","el","desayuno.","Nunca","cena","almuerzo"]},
+    {task:"Adverb der Weise:",hint:"Das Baby schläft ruhig.",solution:["El","bebé","duerme","tranquilamente."],pool:["El","bebé","duerme","tranquilamente.","nerviosamente.","gato","come"]},
+    {task:"Satzadverb:",hint:"Morgen wird es wahrscheinlich regnen.",solution:["Probablemente","llueva","mañana."],pool:["Probablemente","llueva","mañana.","Afortunadamente","hoy","ayer","nieva"]},
+    {task:"Adverb der Menge:",hint:"Es ist zu heiß zum Rausgehen.",solution:["Hace","demasiado","calor","para","salir."],pool:["Hace","demasiado","calor","para","salir.","poco","frío","entrar.","mucho"]},
+    {task:"Satzadverb am Anfang:",hint:"Zum Glück hat es nicht geregnet.",solution:["Afortunadamente","no","llovió."],pool:["Afortunadamente","no","llovió.","Desafortunadamente","nevó.","sí","calor"]},
+    {task:"Adverb der Häufigkeit:",hint:"Er arbeitet oft spät.",solution:["Frecuentemente","trabaja","tarde."],pool:["Frecuentemente","trabaja","tarde.","temprano.","generalmente","estudia","nunca"]},
+    {task:"Ordne den Satz:",hint:"Leider konnte ich nicht kommen.",solution:["Desafortunadamente","no","pude","venir."],pool:["Desafortunadamente","no","pude","venir.","afortunadamente","pudo","ir.","hoy"]},
+    {task:"Adverb der Weise:",hint:"Sie tanzt schön.",solution:["Ella","baila","bellamente."],pool:["Ella","baila","bellamente.","tristemente.","él","canta","rápidamente."]},
+    {task:"Adverb der Zeit:",hint:"Er isst immer früh.",solution:["Siempre","come","temprano."],pool:["Siempre","come","temprano.","nunca","tarde.","generalmente","pronto."]},
+    {task:"Satzadverb:",hint:"Wahrscheinlich kommt er nicht.",solution:["Probablemente","no","venga."],pool:["Probablemente","no","venga.","afortunadamente","sí","llegue.","frecuentemente"]},
+    {task:"Adverb der Menge:",hint:"Es gibt kaum Wasser.",solution:["Hay","muy","poca","agua."],pool:["Hay","muy","poca","agua.","mucha","leche.","demasiada","bastante"]},
+    {task:"Bilde den Satz:",hint:"Glücklicherweise ist es warm.",solution:["Afortunadamente","hace","calor."],pool:["Afortunadamente","hace","calor.","Desafortunadamente","frío.","llueve","hoy"]},
+    {task:"Ordne die Wörter:",hint:"Normalerweise schläft er früh.",solution:["Generalmente","duerme","temprano."],pool:["Generalmente","duerme","temprano.","frecuentemente","tarde.","nunca","pronto."]},
+    {task:"Adverb der Häufigkeit:",hint:"Sie trinkt oft Kaffee.",solution:["Frecuentemente","bebe","café."],pool:["Frecuentemente","bebe","café.","generalmente","agua.","nunca","leche.","raramente"]},
+    {task:"Satzadverb:",hint:"Leider hat er verloren.",solution:["Desafortunadamente","él","perdió."],pool:["Desafortunadamente","él","perdió.","afortunadamente","ganó.","probablemente","hoy"]},
+    {task:"Adverb der Menge:",hint:"Er hat zu viel gegessen.",solution:["Ha","comido","demasiado."],pool:["Ha","comido","demasiado.","poco.","bebido","mucho.","trabajado","bastante"]},
+    {task:"Bilde den Satz:",hint:"Normalerweise lerne ich abends.",solution:["Generalmente","estudio","por","la","noche."],pool:["Generalmente","estudio","por","la","noche.","mañana.","frecuentemente","día"]},
+    {task:"Ordne den Satz:",hint:"Zum Glück war es nicht kalt.",solution:["Afortunadamente","no","hacía","frío."],pool:["Afortunadamente","no","hacía","frío.","calor.","Desafortunadamente","llovía"]},
+    {task:"Adverb der Weise:",hint:"Er erklärt ruhig.",solution:["Él","explica","tranquilamente."],pool:["Él","explica","tranquilamente.","nerviosamente.","ella","trabaja","rápidamente."]},
+    {task:"Satzadverb:",hint:"Wahrscheinlich regnet es heute.",solution:["Probablemente","llueva","hoy."],pool:["Probablemente","llueva","hoy.","mañana.","Afortunadamente","nieva","frecuentemente"]},
+    {task:"Adverb der Häufigkeit:",hint:"Sie studiert oft.",solution:["Ella","estudia","frecuentemente."],pool:["Ella","estudia","frecuentemente.","generalmente.","él","trabaja","raramente."]},
+    {task:"Bilde den Satz:",hint:"Leider kam sie nicht.",solution:["Desafortunadamente","ella","no","vino."],pool:["Desafortunadamente","ella","no","vino.","afortunadamente","él","llegó.","hoy"]},
+    {task:"Ordne die Wörter:",hint:"Er isst oft zu viel.",solution:["Frecuentemente","come","demasiado."],pool:["Frecuentemente","come","demasiado.","poco.","generalmente","bebe","mucho."]},
+    {task:"Adverb der Zeit:",hint:"Normalerweise arbeite ich viel.",solution:["Generalmente","trabajo","mucho."],pool:["Generalmente","trabajo","mucho.","poco.","frecuentemente","estudio","bastante"]},
+    {task:"Satzadverb:",hint:"Glücklicherweise haben wir gewonnen.",solution:["Afortunadamente","ganamos."],pool:["Afortunadamente","ganamos.","Desafortunadamente","perdimos.","probablemente","hoy","llegamos"]},
+  ],
+  3:[
+    {task:"Adverb des Orts:",hint:"Die Schlüssel sind in der Tasche.",solution:["Las","llaves","están","dentro","del","bolso."],pool:["Las","llaves","están","dentro","del","bolso.","fuera","mochila.","libro"]},
+    {task:"Wo ist die Katze?",hint:"Die Katze liegt oben auf dem Sofa.",solution:["El","gato","está","encima","del","sofá."],pool:["El","gato","está","encima","del","sofá.","debajo","mesa.","perro"]},
+    {task:"Ortsadverb:",hint:"Das Café ist in der Nähe.",solution:["El","café","está","cerca."],pool:["El","café","está","cerca.","lejos.","banco","aquí","restaurante"]},
+    {task:"Bilde den Satz:",hint:"Das Kino ist gegenüber.",solution:["El","cine","está","enfrente."],pool:["El","cine","está","enfrente.","detrás.","teatro","delante","museo."]},
+    {task:"Ordne die Wörter:",hint:"Die Schule ist weit weg.",solution:["La","escuela","está","lejos."],pool:["La","escuela","está","lejos.","cerca.","aquí.","biblioteca","allí"]},
+    {task:"Ortsadverb:",hint:"Er steht vor der Tür.",solution:["Está","delante","de","la","puerta."],pool:["Está","delante","de","la","puerta.","detrás","ventana.","encima","debajo"]},
+    {task:"Bilde den Satz:",hint:"Das Buch ist unter dem Tisch.",solution:["El","libro","está","debajo","de","la","mesa."],pool:["El","libro","está","debajo","de","la","mesa.","encima","silla."]},
+    {task:"Ordne den Satz:",hint:"Die Kinder sind draußen.",solution:["Los","niños","están","fuera."],pool:["Los","niños","están","fuera.","dentro.","aquí.","chicos","allí."]},
+    {task:"Ortsadverb:",hint:"Das Restaurant ist dort drüben.",solution:["El","restaurante","está","allí."],pool:["El","restaurante","está","allí.","aquí.","cerca.","banco","lejos."]},
+    {task:"Bilde den Satz:",hint:"Er wohnt in der Nähe.",solution:["Él","vive","cerca."],pool:["Él","vive","cerca.","lejos.","ella","trabaja","enfrente.","aquí"]},
+    {task:"Wo ist der Ball?",hint:"Der Ball ist außerhalb der Box.",solution:["La","pelota","está","fuera","de","la","caja."],pool:["La","pelota","está","fuera","de","la","caja.","dentro","mochila."]},
+    {task:"Ordne die Bausteine:",hint:"Die Katze ist unter dem Bett.",solution:["El","gato","está","debajo","de","la","cama."],pool:["El","gato","está","debajo","de","la","cama.","encima","sofá."]},
+    {task:"Bilde den Satz:",hint:"Das Buch ist hier.",solution:["El","libro","está","aquí."],pool:["El","libro","está","aquí.","allí.","cerca.","mochila","lejos."]},
+    {task:"Ordne den Satz:",hint:"Sie wohnt weit weg.",solution:["Ella","vive","lejos."],pool:["Ella","vive","lejos.","cerca.","él","trabaja","aquí.","allí"]},
+    {task:"Ortsadverb:",hint:"Der Hund ist hinter dem Haus.",solution:["El","perro","está","detrás","de","la","casa."],pool:["El","perro","está","detrás","de","la","casa.","delante","jardín."]},
+    {task:"Bilde den Satz:",hint:"Das Geld ist in der Tasche.",solution:["El","dinero","está","dentro","del","bolso."],pool:["El","dinero","está","dentro","del","bolso.","fuera","mochila.","libro"]},
+    {task:"Ordne die Wörter:",hint:"Die Bücher sind oben auf dem Regal.",solution:["Los","libros","están","encima","del","estante."],pool:["Los","libros","están","encima","del","estante.","debajo","mesa.","dentro"]},
+    {task:"Bilde den Satz:",hint:"Er steht gegenüber der Schule.",solution:["Está","enfrente","de","la","escuela."],pool:["Está","enfrente","de","la","escuela.","detrás","iglesia.","delante","cerca"]},
+    {task:"Ordne den Satz:",hint:"Die Katze ist drinnen.",solution:["El","gato","está","dentro."],pool:["El","gato","está","dentro.","fuera.","aquí.","perro","lejos."]},
+    {task:"Ortsadverb:",hint:"Das Supermarkt ist unten.",solution:["El","supermercado","está","abajo."],pool:["El","supermercado","está","abajo.","arriba.","cerca.","banco","lejos."]},
+    {task:"Bilde den Satz:",hint:"Sie ist oben.",solution:["Ella","está","arriba."],pool:["Ella","está","arriba.","abajo.","él","trabaja","aquí.","allí"]},
+    {task:"Ordne die Bausteine:",hint:"Das Café ist neben der Bank.",solution:["El","café","está","al","lado","del","banco."],pool:["El","café","está","al","lado","del","banco.","lejos","escuela."]},
+    {task:"Bilde den Satz:",hint:"Er ist vor dem Kino.",solution:["Está","delante","del","cine."],pool:["Está","delante","del","cine.","detrás","teatro.","encima","cerca"]},
+    {task:"Ordne den Satz:",hint:"Die Tasche ist links.",solution:["La","bolsa","está","a","la","izquierda."],pool:["La","bolsa","está","a","la","izquierda.","derecha.","aquí","allí."]},
+    {task:"Ortsadverb:",hint:"Das Buch liegt vorne.",solution:["El","libro","está","delante."],pool:["El","libro","está","delante.","detrás.","encima.","debajo.","aquí"]},
+  ],
+  4:[
+    {task:"Zeitadverb:",hint:"Ich habe schon gegessen.",solution:["Ya","he","comido."],pool:["Ya","he","comido.","Todavía","espero.","nunca","bebido."]},
+    {task:"Adverb einsetzen:",hint:"Sie wartet immer noch.",solution:["Todavía","espera."],pool:["Todavía","espera.","Ya","come.","Nunca","trabaja.","habla."]},
+    {task:"Ordne den Satz:",hint:"Ich wohne nicht mehr hier.",solution:["Ya","no","vivo","aquí."],pool:["Ya","no","vivo","aquí.","Todavía","allí.","trabajo","siempre"]},
+    {task:"Bilde den Satz:",hint:"Ich frühstücke immer früh.",solution:["Siempre","desayuno","temprano."],pool:["Siempre","desayuno","temprano.","Nunca","tarde.","como","pronto.","almuerzo"]},
+    {task:"Zeitadverb:",hint:"Er kommt bald.",solution:["Él","viene","pronto."],pool:["Él","viene","pronto.","tarde.","ella","llega","mañana.","nunca"]},
+    {task:"Ordne den Satz:",hint:"Gestern war es kalt.",solution:["Ayer","hacía","frío."],pool:["Ayer","hacía","frío.","mañana","calor.","hoy","lluvia.","siempre"]},
+    {task:"Bilde den Satz:",hint:"Sie ist noch nicht angekommen.",solution:["Todavía","no","ha","llegado."],pool:["Todavía","no","ha","llegado.","ya","salido.","nunca","venido."]},
+    {task:"Zeitadverb:",hint:"Danach gehen wir essen.",solution:["Después","vamos","a","comer."],pool:["Después","vamos","a","comer.","antes","cenar.","luego","trabajar."]},
+    {task:"Ordne den Satz:",hint:"Morgen habe ich Schule.",solution:["Mañana","tengo","colegio."],pool:["Mañana","tengo","colegio.","ayer","trabajo.","hoy","clase.","siempre"]},
+    {task:"Bilde den Satz:",hint:"Er schläft immer spät.",solution:["Siempre","duerme","tarde."],pool:["Siempre","duerme","tarde.","nunca","temprano.","ella","trabaja","pronto."]},
+    {task:"Zeitadverb:",hint:"Ich warte immer noch.",solution:["Todavía","estoy","esperando."],pool:["Todavía","estoy","esperando.","ya","comiendo.","nunca","trabajando.","siempre"]},
+    {task:"Ordne die Wörter:",hint:"Vorher esse ich immer.",solution:["Antes","siempre","como."],pool:["Antes","siempre","como.","después","nunca","bebo.","luego","trabajo."]},
+    {task:"Bilde den Satz:",hint:"Sie ist schon gegangen.",solution:["Ella","ya","se","ha","ido."],pool:["Ella","ya","se","ha","ido.","todavía","llegado.","nunca","venido."]},
+    {task:"Zeitadverb:",hint:"Er kommt immer spät.",solution:["Él","siempre","llega","tarde."],pool:["Él","siempre","llega","tarde.","temprano.","ella","sale","nunca"]},
+    {task:"Ordne den Satz:",hint:"Heute lerne ich viel.",solution:["Hoy","estudio","mucho."],pool:["Hoy","estudio","mucho.","poco.","ayer","trabajé","mañana.","siempre"]},
+    {task:"Bilde den Satz:",hint:"Sie hat noch nicht gegessen.",solution:["Todavía","no","ha","comido."],pool:["Todavía","no","ha","comido.","ya","bebido.","nunca","trabajado."]},
+    {task:"Zeitadverb:",hint:"Dann gehen wir ins Kino.",solution:["Luego","vamos","al","cine."],pool:["Luego","vamos","al","cine.","después","teatro.","antes","restaurante.","hoy"]},
+    {task:"Ordne die Bausteine:",hint:"Er hat früher hier gewohnt.",solution:["Antes","vivía","aquí."],pool:["Antes","vivía","aquí.","después","allí.","luego","trabajaba.","siempre"]},
+    {task:"Bilde den Satz:",hint:"Sie kommt nie pünktlich.",solution:["Ella","nunca","llega","a","tiempo."],pool:["Ella","nunca","llega","a","tiempo.","siempre","tarde.","él","temprano."]},
+    {task:"Zeitadverb:",hint:"Heute ist es kalt.",solution:["Hoy","hace","frío."],pool:["Hoy","hace","frío.","calor.","ayer","llovía.","mañana","viento."]},
+    {task:"Ordne den Satz:",hint:"Er hat noch nicht angefangen.",solution:["Todavía","no","ha","empezado."],pool:["Todavía","no","ha","empezado.","ya","terminado.","nunca","llegado."]},
+    {task:"Bilde den Satz:",hint:"Bald kommen die Ferien.",solution:["Pronto","llegan","las","vacaciones."],pool:["Pronto","llegan","las","vacaciones.","tarde.","clases.","mañana","exámenes."]},
+    {task:"Zeitadverb:",hint:"Gestern habe ich viel gelernt.",solution:["Ayer","estudié","mucho."],pool:["Ayer","estudié","mucho.","poco.","hoy","trabajé","mañana.","siempre"]},
+    {task:"Ordne die Wörter:",hint:"Sie kommt gleich.",solution:["Ella","viene","enseguida."],pool:["Ella","viene","enseguida.","después.","él","llega","mañana.","pronto"]},
+    {task:"Bilde den Satz:",hint:"Er hat es schon gemacht.",solution:["Él","ya","lo","ha","hecho."],pool:["Él","ya","lo","ha","hecho.","todavía","dicho.","nunca","visto."]},
+  ],
+  5:[
+    {task:"Verstärker einsetzen:",hint:"Das Buch ist sehr interessant.",solution:["El","libro","es","muy","interesante."],pool:["El","libro","es","muy","interesante.","poco","aburrido.","película","bastante"]},
+    {task:"Bilde den Satz:",hint:"Der Lehrer spricht sehr deutlich.",solution:["El","profesor","habla","muy","claramente."],pool:["El","profesor","habla","muy","claramente.","poco","rápidamente.","alumno","tan"]},
+    {task:"Verstärker demasiado:",hint:"Es ist zu weit zum Laufen.",solution:["Está","demasiado","lejos","para","caminar."],pool:["Está","demasiado","lejos","para","caminar.","cerca","correr.","muy","nadar."]},
+    {task:"Verstärker + Adjektiv:",hint:"Der Film ist ziemlich langweilig.",solution:["La","película","es","bastante","aburrida."],pool:["La","película","es","bastante","aburrida.","muy","interesante.","libro","tan"]},
+    {task:"Ordne den Satz:",hint:"Das Wasser ist sehr kalt.",solution:["El","agua","está","muy","fría."],pool:["El","agua","está","muy","fría.","bastante","caliente.","poco","tan"]},
+    {task:"Verstärker tan:",hint:"Er läuft so schnell.",solution:["Él","corre","tan","rápidamente."],pool:["Él","corre","tan","rápidamente.","muy","lentamente.","bastante","ella"]},
+    {task:"Bilde den Satz:",hint:"Sie ist kaum müde.",solution:["Ella","está","poco","cansada."],pool:["Ella","está","poco","cansada.","muy","demasiado","contenta.","él"]},
+    {task:"Verstärker demasiado:",hint:"Es ist zu heiß.",solution:["Hace","demasiado","calor."],pool:["Hace","demasiado","calor.","muy","frío.","bastante","viento.","poco"]},
+    {task:"Ordne den Satz:",hint:"Die Prüfung ist sehr schwierig.",solution:["El","examen","es","muy","difícil."],pool:["El","examen","es","muy","difícil.","poco","fácil.","bastante","libro"]},
+    {task:"Verstärker bastante:",hint:"Er ist ziemlich groß.",solution:["Él","es","bastante","alto."],pool:["Él","es","bastante","alto.","muy","bajo.","poco","demasiado","ella"]},
+    {task:"Bilde den Satz:",hint:"Das Essen ist so gut.",solution:["La","comida","está","tan","rica."],pool:["La","comida","está","tan","rica.","muy","mala.","bastante","poco"]},
+    {task:"Verstärker:",hint:"Sie ist sehr glücklich.",solution:["Ella","está","muy","feliz."],pool:["Ella","está","muy","feliz.","poco","triste.","bastante","demasiado","él"]},
+    {task:"Ordne den Satz:",hint:"Er ist kaum sichtbar.",solution:["Él","es","poco","visible."],pool:["Él","es","poco","visible.","muy","claro.","bastante","tan","ella"]},
+    {task:"Bilde den Satz:",hint:"Sie spricht so schnell.",solution:["Ella","habla","tan","rápido."],pool:["Ella","habla","tan","rápido.","lento.","muy","él","bastante"]},
+    {task:"Verstärker:",hint:"Das ist sehr weit.",solution:["Está","muy","lejos."],pool:["Está","muy","lejos.","cerca.","bastante","poco","demasiado","tan"]},
+    {task:"Ordne die Bausteine:",hint:"Er schläft zu viel.",solution:["Él","duerme","demasiado."],pool:["Él","duerme","demasiado.","poco.","ella","trabaja","mucho.","bastante"]},
+    {task:"Bilde den Satz:",hint:"Die Stadt ist ziemlich groß.",solution:["La","ciudad","es","bastante","grande."],pool:["La","ciudad","es","bastante","grande.","muy","pequeña.","poco","tan"]},
+    {task:"Verstärker tan:",hint:"Sie singt so schön.",solution:["Ella","canta","tan","bien."],pool:["Ella","canta","tan","bien.","muy","mal.","bastante","él","poco"]},
+    {task:"Ordne den Satz:",hint:"Er ist sehr müde.",solution:["Él","está","muy","cansado."],pool:["Él","está","muy","cansado.","poco","contento.","bastante","ella","tan"]},
+    {task:"Bilde den Satz:",hint:"Das Wetter ist kaum gut.",solution:["El","tiempo","está","poco","bien."],pool:["El","tiempo","está","poco","bien.","muy","mal.","bastante","demasiado"]},
+    {task:"Verstärker:",hint:"Sie lernt so viel.",solution:["Ella","estudia","tanto."],pool:["Ella","estudia","tanto.","poco.","muy","él","trabaja","bastante"]},
+    {task:"Ordne die Bausteine:",hint:"Es ist zu kalt.",solution:["Hace","demasiado","frío."],pool:["Hace","demasiado","frío.","muy","calor.","bastante","viento.","poco"]},
+    {task:"Bilde den Satz:",hint:"Er ist ziemlich müde.",solution:["Él","está","bastante","cansado."],pool:["Él","está","bastante","cansado.","muy","contento.","poco","ella","tan"]},
+    {task:"Verstärker tan:",hint:"Sie ist so klug.",solution:["Ella","es","tan","inteligente."],pool:["Ella","es","tan","inteligente.","muy","tonta.","bastante","él","poco"]},
+    {task:"Ordne den Satz:",hint:"Das Konzert war sehr gut.",solution:["El","concierto","fue","muy","bueno."],pool:["El","concierto","fue","muy","bueno.","poco","malo.","bastante","película","tan"]},
+  ]
+};
+
+// ── STATE ──
+let cur=0, visited=new Set([0]);
+const exState={}; // {slideId: {gen, score, exs}}
+
+// ── NAVIGATION ──
+function goTo(n){
+  document.getElementById('slide'+cur).classList.remove('active');
+  document.getElementById('nav'+cur).classList.remove('active');
+  if(n!==cur) document.getElementById('nav'+cur).classList.add('done'), document.getElementById('nn'+cur).textContent='✓';
+  cur=n; visited.add(n);
+  document.getElementById('slide'+n).classList.add('active');
+  document.getElementById('nav'+n).classList.remove('done');
+  document.getElementById('nav'+n).classList.add('active');
+  document.getElementById('nn'+n).textContent=n+1;
+  window.scrollTo(0,0);
+  if(n<6 && !exState[n]) renderExercises(n);
+  if(n===6) renderQuiz();
+  updateMenuState(n);
+}
+
+// ── SCENES ──
+function triggerPop(id,word){
+  const el=document.getElementById(id);
+  el.textContent=word; el.classList.remove('boom');
+  void el.offsetWidth; el.classList.add('boom');
+}
+let altFlag={};
+function triggerPopAlt(id,w1,w2){
+  altFlag[id]=!altFlag[id];
+  triggerPop(id, altFlag[id]?w1:w2);
+}
+// Auto-trigger scenes
+setTimeout(()=>triggerPop('pop0','rápidamente'),1800);
+
+// ── EXERCISES ──
+function shuffle(arr){return [...arr].sort(()=>Math.random()-.5);}
+
+function getExercises(sid){
+  return shuffle(POOL[sid]).slice(0,4);
+}
+
+function renderExercises(sid){
+  if(!exState[sid]) exState[sid]={gen:1,score:0,exs:getExercises(sid)};
+  const {gen,score,exs}=exState[sid];
+  const cont=document.getElementById('exs'+sid);
+  let html=`<div class="ex-header"><span style="font-size:1.4rem">✏️</span><h3>Übungen — Bilde Sätze</h3></div>
+  <div class="ex-bar">
+    <button class="ex-btn" onclick="shuffleEx(${sid})">🔀 Neue Aufgaben</button>
+    <span class="ex-info">Set ${gen} · Richtig: <strong style="color:#4ADE80">${score} / ${exs.length}</strong></span>
+  </div>`;
+  exs.forEach((q,i)=>{ html+=buildCard(sid,i,q,gen); });
+  cont.innerHTML=html;
+}
+
+function buildCard(sid,qi,q,gen){
+  const poolShuffled=shuffle(q.pool);
+  const id=`ex_${sid}_${qi}_${gen}`;
+  return `<div class="ex-card" id="card_${id}">
+    <div class="ex-num">Aufgabe ${qi+1}</div>
+    <div class="ex-task">${q.task}</div>
+    <div class="ex-hint">💬 ${q.hint}</div>
+    <div style="font-size:.76rem;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:1.5px;font-family:monospace;margin-bottom:6px">Dein Satz:</div>
+    <div class="drop-zone" id="zone_${id}" ondragover="event.preventDefault();this.classList.add('over')" ondragleave="this.classList.remove('over')" ondrop="onDrop(event,'${id}','${sid}','${qi}')">
+      <span style="color:rgba(255,255,255,.2);font-size:.8rem;font-style:italic">← Bausteine hierher ziehen oder klicken</span>
+    </div>
+    <div style="font-size:.76rem;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:1.5px;font-family:monospace;margin:12px 0 6px">Bausteine:</div>
+    <div class="tile-pool" id="pool_${id}" ondragover="event.preventDefault()" ondrop="onDropPool(event,'${id}')">
+      ${poolShuffled.map((w,wi)=>`<div class="tile" id="t_${id}_${wi}" draggable="true" ondragstart="onDragStart(event,'${w}','${id}_${wi}')" onclick="tileClick('${w}','${id}_${wi}','${id}','${sid}','${qi}')">${w}</div>`).join('')}
+    </div>
+    <div>
+      <button class="check-btn" onclick="checkEx('${id}','${sid}','${qi}')">✓ Überprüfen</button>
+      <button class="reset-btn" onclick="resetEx('${id}','${sid}','${qi}')">↺ Reset</button>
+      <div class="feedback" id="fb_${id}"></div>
+      <div id="sol_${id}"></div>
+    </div>
+  </div>`;
+}
+
+let dragData={};
+function onDragStart(e,word,tid){dragData={word,tid};}
+function onDrop(e,id,sid,qi){
+  e.preventDefault();
+  document.getElementById('zone_'+id).classList.remove('over');
+  if(!dragData.word) return;
+  moveToZone(dragData.word,dragData.tid,id,sid,qi);
+  dragData={};
+}
+function onDropPool(e,id){
+  e.preventDefault();
+  if(!dragData.word) return;
+  // move back to pool if from zone
+  const zone=document.getElementById('zone_'+id);
+  const tileInZone=zone.querySelector(`[id="t_${dragData.tid}"]`);
+  if(tileInZone){tileInZone.remove(); restorePool(dragData.tid,dragData.word,id);}
+  dragData={};
+}
+
+function tileClick(word,tid,id,sid,qi){
+  const zone=document.getElementById('zone_'+id);
+  const pool=document.getElementById('pool_'+id);
+  const tileInPool=pool.querySelector(`#t_${tid}`);
+  const tileInZone=zone.querySelector(`#t_${tid}`);
+  if(tileInPool) moveToZone(word,tid,id,sid,qi);
+  else if(tileInZone){tileInZone.remove(); restorePool(tid,word,id);}
+}
+
+function moveToZone(word,tid,id,sid,qi){
+  const pool=document.getElementById('pool_'+id);
+  const zone=document.getElementById('zone_'+id);
+  const src=document.getElementById('t_'+tid);
+  if(!src||src.classList.contains('used')) return;
+  // remove placeholder
+  const ph=zone.querySelector('span');
+  if(ph) ph.remove();
+  const tile=document.createElement('div');
+  tile.className='tile in-zone';
+  tile.id='t_'+tid;
+  tile.draggable=true;
+  tile.textContent=word;
+  tile.setAttribute('ondragstart',`onDragStart(event,'${word}','${tid}')`);
+  tile.setAttribute('onclick',`tileClick('${word}','${tid}','${id}','${sid}','${qi}')`);
+  zone.appendChild(tile);
+  src.remove();
+}
+
+function restorePool(tid,word,id){
+  const pool=document.getElementById('pool_'+id);
+  const zone=document.getElementById('zone_'+id);
+  if(zone.children.length===0){
+    zone.innerHTML='<span style="color:rgba(255,255,255,.2);font-size:.8rem;font-style:italic">← Bausteine hierher ziehen oder klicken</span>';
+  }
+  const tile=document.createElement('div');
+  tile.className='tile';
+  tile.id='t_'+tid;
+  tile.draggable=true;
+  tile.textContent=word;
+  tile.setAttribute('ondragstart',`onDragStart(event,'${word}','${tid}')`);
+  tile.setAttribute('onclick',`tileClick('${word}','${tid}','${id}','${sid}','${qi}')`);
+  pool.appendChild(tile);
+}
+
+function checkEx(id,sid,qi){
+  const zone=document.getElementById('zone_'+id);
+  const q=exState[sid].exs[qi];
+  const tiles=[...zone.querySelectorAll('.tile')].map(t=>t.textContent);
+  const ok=JSON.stringify(tiles)===JSON.stringify(q.solution);
+  const card=document.getElementById('card_'+id);
+  const fb=document.getElementById('fb_'+id);
+  const sol=document.getElementById('sol_'+id);
+  card.classList.add(ok?'correct-card':'wrong-card');
+  fb.className='feedback show '+(ok?'ok':'nope');
+  fb.innerHTML=ok?'✅ <strong>Richtig!</strong> ¡Muy bien!':'❌ <strong>Nicht ganz.</strong>';
+  if(!ok) sol.innerHTML=`<div class="solution-box">Lösung: ${q.solution.join(' ')}</div>`;
+  zone.querySelectorAll('.tile').forEach(t=>{ t.classList.remove('in-zone'); t.classList.add(ok?'t-correct':'t-wrong'); t.setAttribute('draggable',false); t.onclick=null; });
+  document.querySelector(`#card_${id} .check-btn`).style.display='none';
+  if(ok){ exState[sid].score++; document.querySelector(`#exs${sid} .ex-info`).innerHTML=`Set ${exState[sid].gen} · Richtig: <strong style="color:#4ADE80">${exState[sid].score} / ${exState[sid].exs.length}</strong>`; }
+}
+
+function resetEx(id,sid,qi){
+  exState[sid].exs[qi]=exState[sid].exs[qi]; // keep same q
+  renderExercises(sid);
+}
+
+function shuffleEx(sid){
+  exState[sid]={gen:(exState[sid]?.gen||0)+1, score:0, exs:getExercises(sid)};
+  renderExercises(sid);
+}
+
+// ── QUIZ ──
+let qIdx=0, qScore=0, qSel=null;
+function renderQuiz(){
+  qIdx=0; qScore=0; qSel=null;
+  renderQQuestion();
+}
+function renderQQuestion(){
+  const body=document.getElementById('quiz-body');
+  const q=QUIZ[qIdx];
+  body.innerHTML=`
+    <div class="score-disp">Frage ${qIdx+1} / ${QUIZ.length} · Punkte: ${qScore}</div>
+    <div class="quiz-q">${q.q}</div>
+    <div class="quiz-opts">${q.opts.map((o,i)=>`<button class="quiz-opt" onclick="selectQ(${i})">${o}</button>`).join('')}</div>
+    <div id="qfb"></div>`;
+}
+function selectQ(i){
+  if(qSel!==null) return;
+  qSel=i;
+  const q=QUIZ[qIdx];
+  const btns=document.querySelectorAll('.quiz-opt');
+  btns.forEach((b,j)=>{ b.disabled=true; if(j===q.ans)b.classList.add('correct'); else if(j===i)b.classList.add('wrong'); });
+  if(i===q.ans) qScore++;
+  document.getElementById('qfb').innerHTML=`<div class="quiz-fb">${i===q.ans?'✅':'❌'} ${q.exp}</div><button class="btn-primary" style="margin-top:16px" onclick="nextQ()">${qIdx===QUIZ.length-1?'Ergebnis →':'Nächste Frage →'}</button>`;
+}
+function nextQ(){
+  qIdx++;
+  if(qIdx>=QUIZ.length){ showFinal(); return; }
+  qSel=null;
+  renderQQuestion();
+}
+function showFinal(){
+  const p=Math.round(qScore/QUIZ.length*100);
+  document.getElementById('quiz-body').innerHTML=`
+    <div class="final">
+      <div class="stars">${p>=80?'⭐⭐⭐':p>=50?'⭐⭐':'⭐'}</div>
+      <div class="final-score">${qScore}/${QUIZ.length}</div>
+      <p style="font-size:1.1rem;color:var(--gold)">${p>=80?'¡Excelente! Hervorragend!':p>=50?'¡Bien hecho! Gut gemacht!':'¡Ánimo! Weiter üben!'}</p>
+      <p style="color:rgba(255,255,255,.4);font-size:.88rem;margin-top:4px">${p}% richtig</p>
+      <button class="btn-primary" style="margin-top:22px" onclick="renderQuiz()">🔄 Neu starten</button>
+    </div>`;
+}
+
+// ── MENU ──
+let menuOpen = false;
+function toggleMenu() {
+  menuOpen = !menuOpen;
+  const overlay = document.getElementById('menu-overlay');
+  const drawer = document.getElementById('menu-drawer');
+  const btn = document.getElementById('menu-btn');
+  if (menuOpen) {
+    overlay.style.opacity = '1';
+    overlay.style.pointerEvents = 'auto';
+    drawer.style.transform = 'translateX(0)';
+    btn.textContent = '✕';
+  } else {
+    overlay.style.opacity = '0';
+    overlay.style.pointerEvents = 'none';
+    drawer.style.transform = 'translateX(-100%)';
+    btn.textContent = '☰';
+  }
+}
+
+function updateMenuState(n) {
+  for (let i = 0; i <= 6; i++) {
+    const item = document.querySelector(`.menu-item:nth-child(${i+1})`);
+    const items = document.querySelectorAll('.menu-item');
+    if (items[i]) {
+      items[i].classList.remove('menu-active','menu-done');
+      const num = document.getElementById('mn'+i);
+      if (i === n) {
+        items[i].classList.add('menu-active');
+        if (num) { num.style.background='var(--gold)'; num.style.color='var(--dark)'; num.textContent=i+1; }
+      } else if (visited.has(i)) {
+        items[i].classList.add('menu-done');
+        if (num) { num.style.background='#16A34A'; num.style.color='#fff'; num.textContent='✓'; }
+      } else {
+        if (num) { num.style.background='rgba(255,255,255,.08)'; num.style.color='inherit'; num.textContent=i+1; }
+      }
+    }
+  }
+}
+
+// Init exercises for slide 0
+renderExercises(0);
+// Auto-trigger scenes with delay
+document.querySelectorAll('.scene').forEach((s,i)=>{
+  setTimeout(()=>{
+    const popId='pop'+i;
+    const words=['rápidamente','rápidamente','tranquilamente','¡dentro!','¡siempre!','¡muy bien!'];
+    if(document.getElementById(popId)) triggerPop(popId, words[i]);
+  }, 1800+i*200);
+});
+</script>
+
+  <!-- Floating link to AdverbioMaster -->
+
+  <a href="adverbio-master.html" style="position:fixed;bottom:20px;right:20px;z-index:999;background:linear-gradient(135deg,#58cc02,#46a302);color:#fff;padding:10px 18px;border-radius:30px;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:800;text-decoration:none;box-shadow:0 4px 15px rgba(88,204,2,.4);display:flex;align-items:center;gap:8px;transition:transform .2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+    <span>🦉</span> AdverbioMaster
+  </a>
+</body>
+</html>
